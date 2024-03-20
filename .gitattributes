@@ -1,2 +1,3 @@
-*,TcGVL linguist-language=IEC61131-3 or C or Pascal
+*,TcGVL linguist-language=IEC61131-3|C|Pascal
+
 *.TcPOU linguist-language=IEC61131-3 or C or Pascal
