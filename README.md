@@ -8,16 +8,15 @@ This repo is the submoudle of [Digital Casting System] for PLC controller and AB
 
 ## **Requirements**
 
-- [Windows 10]()
-- [Debian 12]()
+- [Windows 10]() or [Debian 12]()
 - [TwinCAT](https://www.beckhoff.com/en-en/products/automation/twincat/?pk_campaign=AdWords-AdWordsSearch-TwinCAT_EN&pk_kwd=twincat&gclid=Cj0KCQjw9ZGYBhCEARIsAEUXITW5dmPmQ2629HIuFY7wfbSR70pi5uY2lkYziNmfKYczm1_YsK4hhPsaApjyEALw_wcB)
 - [Docker]()
 - [ABB RobotStudio]()
 
-## **Package Version**
+## **Package Information**
 
-## **Installation**
+## **Usage**
 
 ## Credits
 
-This package was created by WeiTing Chen [`@WeiTing1991`](https://github.com/WeiTing1991) at USI-FMAA and ETHZurich.
+This package was created by WeiTing Chen [`@WeiTing1991`](http:ws://github.com/WeiTing1991) at USI-FMAA and ETHZurich.
