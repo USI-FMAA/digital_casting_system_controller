@@ -103,13 +103,10 @@
     <Compile Include="POUs\FB_SetOutputDataToIO.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\MAIN_2.TcPOU">
+    <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\P_Control_Mode.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\P_Laptop_Operate.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\P_Manual_Operate.TcPOU">
@@ -119,6 +116,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\P_Robot_Operate.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\P_Laptop_Operate.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Utils\F_LowpassFilter.TcPOU">

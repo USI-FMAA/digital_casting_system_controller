@@ -1,9 +1,9 @@
-﻿ < ?xml version = "1.0" encoding = "utf-8"? >
- < TcPlcObject Version = "1.1.0.1" ProductVersion = "3.1.4024.11" >
-  < POU Name = "P_PNDataConvert" Id = "{a384d438-226e-494f-ae1a-229d16d11e5f}" SpecialFunc = "None" >
-    < Declaration > < ![CDATA[PROGRAM P_PNDataConvert
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="P_PNDataConvert" Id="{f7d26543-681d-42ee-b4b0-773d93a30fbb}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_PNDataConvert
 VAR
-
+	
 	sizearr: UINT;
 
 	arr_GISlot: ARRAY[32..255] OF BYTE;
@@ -25,9 +25,9 @@ VAR
 	arr_SP1_DISlot: ARRAY [0..7] OF BOOL;
 
 END_VAR
-]] > < / Declaration >
-    < IMPLEMENTATION >
-      < ST > < ![CDATA[ // ***********************************************************************************
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// ***********************************************************************************
 //
 // Müller-steinag Gruppe, Kandergrien Einigen, CH-3646 Bern
 // ETH Zurich, Building HIF E26, Laura-Hezner-Weg 7, CH-8093 Zürich
@@ -197,12 +197,13 @@ END_VAR
 		// GVL_ROB.ob_SP1_is_run:= arr_SP1_DISlot[0]; // #32
 
 	// Group Input To Robot (mapping from 121 to .., 8*2Bytes in robotstudio)
-		// F_Convert_2Byte_to_Int(GVL_ROB.on_SP1_max_flowrate, arr_GOSlot[106], arr_GOSlot[107]);
-]] > < / ST >
-    < / IMPLEMENTATION >
-    < LineIds Name = "P_PNDataConvert" >
-      < LineId Id = "28" Count = "170" / >
-      < LineId Id = "5" Count = "0" / >
-    < / LineIds >
-  < / POU >
- < / TcPlcObject >
+		// F_Convert_2Byte_to_Int(GVL_ROB.on_SP1_max_flowrate, arr_GOSlot[106], arr_GOSlot[107]);]]></ST>
+    </Implementation>
+    <LineIds Name="P_PNDataConvert">
+      <LineId Id="27" Count="13" />
+      <LineId Id="197" Count="0" />
+      <LineId Id="42" Count="154" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

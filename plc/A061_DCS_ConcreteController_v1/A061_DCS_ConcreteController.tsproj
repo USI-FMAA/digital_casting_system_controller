@@ -1828,6 +1828,24 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 		<DataType>
+			<Name GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..31] OF BYTE</Name>
+			<BitSize>256</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>32</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}" IecBaseType="true" AutoDeleteType="true">ARRAY [32..255] OF BYTE</Name>
+			<BitSize>1792</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>32</LBound>
+				<Elements>224</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{0146173C-D895-D219-E209-CC005AC77636}" Namespace="Tc2_SerialCom" AutoDeleteType="true">EL6inData22B</Name>
 			<Comment><![CDATA[ This data type is corresponding to the
    EL-6xxx data structure used in the
@@ -1851,24 +1869,6 @@ External Setpoint Generation:
 				<BitSize>176</BitSize>
 				<BitOffs>16</BitOffs>
 			</SubItem>
-		</DataType>
-		<DataType>
-			<Name GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..31] OF BYTE</Name>
-			<BitSize>256</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>32</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}" IecBaseType="true" AutoDeleteType="true">ARRAY [32..255] OF BYTE</Name>
-			<BitSize>1792</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>32</LBound>
-				<Elements>224</Elements>
-			</ArrayInfo>
 		</DataType>
 		<DataType>
 			<Name GUID="{D6B0A42D-897A-4B90-95E8-3C741C3CE3EE}" Namespace="Tc2_SerialCom" AutoDeleteType="true">EL6outData22B</Name>
@@ -2348,7 +2348,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{C29FE267-D081-4438-A6F8-D544C2CCE89E}" Name="DCSv1" PrjFilePath="DCSv1\DCSv1.plcproj" TmcFilePath="DCSv1\DCSv1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="DCSv1\DCSv1.tmc" TmcHash="{807DE28C-EF81-71F2-E296-0E98C2D46D7D}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="DCSv1\DCSv1.tmc" TmcHash="{E428BE81-EF4F-D694-BA68-312619F3F2FA}">
 					<Name>DCSv1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -2379,6 +2379,11 @@ External Setpoint Generation:
 							<Type>INT</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.ib_CC1_Safety_Ready</Name>
+							<Comment><![CDATA[ Safety ready for line mixer button ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.in_MID1_ActAbsCurrent</Name>
 							<Comment><![CDATA[ Hardware Inputs
 
@@ -2397,11 +2402,6 @@ External Setpoint Generation:
 						<Var>
 							<Name>GVL_IO.in_MID2_ActMotorTemperature</Name>
 							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_CC1_Safety_Ready</Name>
-							<Comment><![CDATA[ Safety ready for line mixer button ]]></Comment>
-							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ib_CC1_Button_Mode_Manual</Name>
@@ -2477,6 +2477,16 @@ External Setpoint Generation:
 							<Name>GVL_IO.in_Pressure_Pump</Name>
 							<Type>INT</Type>
 						</Var>
+						<Var>
+							<Name>GVL_PN.DO_From_ROB</Name>
+							<Comment><![CDATA[ Digital Output from robot (1 bit)]]></Comment>
+							<Type GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}">ARRAY [0..31] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>GVL_PN.GO_From_ROB</Name>
+							<Comment><![CDATA[ Group Output from robot (16 bit or 32 bit) ]]></Comment>
+							<Type GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}">ARRAY [32..255] OF BYTE</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
@@ -2526,13 +2536,13 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.on_CP1_Speed</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.ob_AP1_Power_On</Name>
 							<Comment><![CDATA[ Admixture Pump 1]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.on_CP1_Speed</Name>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ob_AP1_Start</Name>
@@ -2551,14 +2561,14 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.on_AP1_Speed</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.ob_SP1_Power_On</Name>
 							<Comment><![CDATA[ 
  Sup-Admixture Pump 1]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.on_AP1_Speed</Name>
-							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ob_SP1_Start</Name>
@@ -2579,6 +2589,16 @@ External Setpoint Generation:
 						<Var>
 							<Name>GVL_IO.on_SP1_Speed</Name>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_PN.DI_To_ROB</Name>
+							<Comment><![CDATA[ Digital Input to robot (1 bit)]]></Comment>
+							<Type GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}">ARRAY [0..31] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>GVL_PN.GI_To_ROB</Name>
+							<Comment><![CDATA[ Group Input to robot (16 bit or 32 bit)]]></Comment>
+							<Type GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}">ARRAY [32..255] OF BYTE</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
@@ -2645,11 +2665,6 @@ External Setpoint Generation:
 							<Type GUID="{0146173C-D895-D219-E209-CC005AC77636}" Namespace="Tc2_SerialCom">EL6inData22B</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.ib_AP1_Button_On</Name>
-							<Comment><![CDATA[ Accelerator Pump 1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.in_CP1_Tube_Pressure_Sensor</Name>
 							<Comment><![CDATA[??]]></Comment>
 							<Type>INT</Type>
@@ -2660,14 +2675,19 @@ External Setpoint Generation:
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.ib_SP1_Button_On</Name>
-							<Comment><![CDATA[ 
- Superplasticizer Pump 1 (WT 220915)]]></Comment>
+							<Name>GVL_IO.ib_AP1_Button_On</Name>
+							<Comment><![CDATA[ Accelerator Pump 1]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.in_AP1_Poti_Speed</Name>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_SP1_Button_On</Name>
+							<Comment><![CDATA[ 
+ Superplasticizer Pump 1 (WT 220915)]]></Comment>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ib_MI1_Button_On</Name>
@@ -2679,16 +2699,6 @@ External Setpoint Generation:
 						<Var>
 							<Name>GVL_IO.in_MI1_Poti_Speed</Name>
 							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_PN.DO_From_ROB</Name>
-							<Comment><![CDATA[ Digital Output from robot (1 bit)]]></Comment>
-							<Type GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}">ARRAY [0..31] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>GVL_PN.GO_From_ROB</Name>
-							<Comment><![CDATA[ Group Output from robot (16 bit or 32 bit) ]]></Comment>
-							<Type GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}">ARRAY [32..255] OF BYTE</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" ContextId="1" AreaNo="17">
@@ -2749,16 +2759,6 @@ External Setpoint Generation:
 						<Var>
 							<Name>GVL.stOut_EL6001</Name>
 							<Type GUID="{D6B0A42D-897A-4B90-95E8-3C741C3CE3EE}" Namespace="Tc2_SerialCom">EL6outData22B</Type>
-						</Var>
-						<Var>
-							<Name>GVL_PN.DI_To_ROB</Name>
-							<Comment><![CDATA[ Digital Input to robot (1 bit)]]></Comment>
-							<Type GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}">ARRAY [0..31] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>GVL_PN.GI_To_ROB</Name>
-							<Comment><![CDATA[ Group Input to robot (16 bit or 32 bit)]]></Comment>
-							<Type GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}">ARRAY [32..255] OF BYTE</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2021-01-27T08:08:38">
@@ -7143,7 +7143,10 @@ External Setpoint Generation:
 				</Image>
 				<Box Id="18" BoxType="9131">
 					<Name>robotbasicio</Name>
-					<Comment><![CDATA[GSDML Name: GSDML-V2.33-ABB-Robotics-Robot-Device-20180814.xml
+					<Comment><![CDATA[
+The GSDML is not available!
+
+GSDML Name: GSDML-V2.33-ABB-Robotics-Robot-Device-20180814.xml
 Path: D:\99_Github\02_USI\digital_casting_system\ext_controllers\plc\A061_DCS_ConcreteController_dev\GSDML\
 VendorName: ABB Robotics
 OrderNumber: 888-3
