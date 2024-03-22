@@ -19,6 +19,10 @@
 // ***********************************************************************************
 
 VAR_GLOBAL
+	
+
+//Set the IP with 192.168.30.11 
+
 //
 //File description 
 //GVL(GVL : Global variables)

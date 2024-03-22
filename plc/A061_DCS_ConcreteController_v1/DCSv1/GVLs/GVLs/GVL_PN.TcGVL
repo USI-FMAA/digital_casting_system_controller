@@ -24,7 +24,7 @@ VAR_GLOBAL
 	// Group Output from robot (16 bit or 32 bit) 
 	GO_From_ROB AT %I* :ARRAY[32..255] OF BYTE;
 	// Digital Input to robot (1 bit)
-	DI_To_ROB AT %Q* :ARRAY[0..31] OF BYTE;
+	DI_To_ROB AT %Q* :ARRAY[0..31] OF arr8Bit;
 	// Group Input to robot (16 bit or 32 bit)
 	GI_To_ROB AT %Q* :ARRAY[32..255] OF BYTE;	
 

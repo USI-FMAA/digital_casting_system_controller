@@ -24,11 +24,13 @@ END_VAR
 
 
 P_Control_Mode();
-//P_PNDataConvert();
+
+// data comunicaiton robot via EL6631
 
 IF GVL.b_mode_laptop THEN 
 	P_Laptop_Operate();
 ELSIF GVL.b_mode_robot THEN 
+	P_PNDataConvert();
 	P_Robot_Operate();
 ELSIF GVL.b_mode_manual THEN 
 	P_Manual_Operate();
@@ -50,14 +52,12 @@ END_IF
     <LineIds Name="MAIN">
       <LineId Id="254" Count="13" />
       <LineId Id="52" Count="2" />
-      <LineId Id="294" Count="0" />
+      <LineId Id="301" Count="0" />
+      <LineId Id="300" Count="0" />
       <LineId Id="275" Count="0" />
-      <LineId Id="229" Count="0" />
-      <LineId Id="276" Count="0" />
-      <LineId Id="280" Count="1" />
-      <LineId Id="289" Count="0" />
-      <LineId Id="292" Count="0" />
-      <LineId Id="278" Count="0" />
+      <LineId Id="307" Count="2" />
+      <LineId Id="314" Count="0" />
+      <LineId Id="310" Count="3" />
       <LineId Id="282" Count="0" />
       <LineId Id="230" Count="10" />
       <LineId Id="5" Count="0" />

@@ -26,6 +26,9 @@ VAR_GLOBAL
 	ib_spare : BOOL;
 	in_spare : INT;
 	
+	ib_CC1_enable : BOOL;
+	ib_CC1_reset : BOOL;
+	
 	ob_mode_manual : BOOL;
 	ob_mode_laptop : BOOL; 	
 	ob_mode_robot : BOOL; 
@@ -34,8 +37,9 @@ VAR_GLOBAL
 	
 	//Inline Mixer (MI1)  				
 	ib_MI1_set_run : BOOL;
+	ib_Ml1_enable : BOOL;
 	ib_MI1_set_rest : BOOL;				 
-	in_MI1_set_speed : INT;								// [0 rpm to 120 rpm]
+	in_MI1_set_speed : UINT;								// [0 rpm to 120 rpm]
 	ib_MI1_set_curved_speed_mode_on : BOOL;
 	
 	ob_MI1_is_run : BOOL;

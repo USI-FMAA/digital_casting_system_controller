@@ -13,6 +13,7 @@ VAR
 	
 	Test : MC_ReadStatus;
 	
+	speed : REAL;
 	fb_SetOutputDataToIO : FB_SetOutputDataToIO;
 	fb_getOutputData : FB_GetOutputData;
 	fb_setConfig : FB_SetConfigData;
@@ -63,9 +64,6 @@ IF fb_CC1_Trigger_Safety_Off.Q THEN
 END_IF
 GVL_IO.ob_CC1_Safety_Reset:= b_Safety_Reset OR GVL_IO.ib_CC1_Button_Reset;
 
-// data comunicaiton robot via EL6631
-P_PNDataConvert();
-
 // Concrete Conctroller enable 
 P_CC1_Enable( b_set_run:= GVL_RESD.b_Concrete_Controller_enable );
 
@@ -85,19 +83,19 @@ _f_MI1_Override_Max_Speed :=120,
 _f_CP1_Max_Flowrate := INT_TO_REAL(GVL_RESD.n_Concrete_Pump_Max_Speed) * 
 								   GVL_RESD.f_Concrete_Pump_dosing_volume,
 _f_CP1_Check_Flowrate := GVL_RESD.f_Concrete_Pump_Check_Flowrate,
-_t_CP1_Check_Duration := INT_TO_TIME(GVL_RESD.n_Concrete_Pump_Check_Duration*1000),
+_t_CP1_Check_Duration := INT_TO_TIME(GVL_RESD.n_Concrete_Pump_Check_Duration)*1000,
 
 // Admixture pump (High)
 _n_AP1_Max_Flowrate := GVL_RESD.n_Admixture_Pump_Max_Flowrate,
 _n_AP1_Check_Flowrate := GVL_RESD.f_Admixture_Pump_Check_Flowrate,
-_t_AP1_Check_Duration := INT_TO_TIME(GVL_RESD.n_Admixture_Pump_Check_Duration*1000),
+_t_AP1_Check_Duration := INT_TO_TIME(GVL_RESD.n_Admixture_Pump_Check_Duration)*1000,
 _n_AP1_Flush_Flowrate := GVL_RESD.f_Admixture_Pump_Flush_Flowrate,
 //_f_AP1_Check_Mass : REAL;
 
 // Admixture pump (low)
 _n_SP1_Max_Flowrate := GVL_RESD.n_Sup_Admixture_Pump_Max_Flowrate,
 _n_SP1_Check_Flowrate := GVL_RESD.f_Sup_Admixture_Pump_Check_Flowrate,
-_t_SP1_Check_Duration := INT_TO_TIME(GVL_RESD.n_Sup_Admixture_Pump_Check_Duration*1000),
+_t_SP1_Check_Duration := INT_TO_TIME(GVL_RESD.n_Sup_Admixture_Pump_Check_Duration)*1000,
 //_f_SP1_Check_Mass : REAL;
 );
 
@@ -165,7 +163,7 @@ Mixer1_2(
 	b_JogBackwards	:= fb_SetOutputDataToIO.b_MI1_set_run,
 	b_Enable		:= fb_SetOutputDataToIO.b_Ml1_Enable AND GVL_IO.ib_CC1_Safety_Ready,
 	b_Reset			:= GVL_RESD.b_Concrete_Controller_reset OR GVL_IO.ib_CC1_Button_Reset,
-	f_Override		:= fb_SetOutputDataToIO.f_MI1_Override_Speed
+	f_Override		:= GVL.n_MI1_OverrideSpeed,
 	);
 	(*
 	fb_MC_SetPosition(
@@ -250,7 +248,7 @@ fb_getOutputData(
 	
 	//AP1
 	b_AP1_is_run := GVL_RESD.b_Admixture_Pump_is_run,
-	b_AP1_is_ready := GVL_RESD.b_Admixture_Pump_is_run,
+	b_AP1_is_ready := GVL_RESD.b_Admixture_Pump_is_ready,
 	
 	//SP1
 	b_SP1_is_run := GVL_RESD.b_Sup_Admixture_Pump_is_run,
@@ -260,9 +258,7 @@ fb_getOutputData(
     </Implementation>
     <LineIds Name="P_Laptop_Operate">
       <LineId Id="117" Count="33" />
-      <LineId Id="355" Count="0" />
-      <LineId Id="342" Count="0" />
-      <LineId Id="151" Count="3" />
+      <LineId Id="152" Count="2" />
       <LineId Id="343" Count="0" />
       <LineId Id="155" Count="186" />
       <LineId Id="5" Count="0" />

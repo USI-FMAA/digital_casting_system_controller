@@ -46,7 +46,7 @@ END_VAR
 // ***********************************************************************************
 
 
-b_Timer_Rest:=GVL_RESD.b_Concrete_Controller_reset;
+b_Timer_Rest:=GVL_ROB.ib_CC1_reset;
 
 //controller reset trigger
 fb_CC1_Timer_Safety(
@@ -61,16 +61,13 @@ IF fb_CC1_Trigger_Safety_On.Q THEN
 END_IF
 IF fb_CC1_Trigger_Safety_Off.Q THEN 
 	b_Safety_Reset:=FALSE;
-	GVL_RESD.b_Concrete_Controller_reset:=FALSE;
+	GVL_ROB.ib_CC1_reset:=FALSE;
 END_IF
 GVL_IO.ob_CC1_Safety_Reset:= b_Safety_Reset OR GVL_IO.ib_CC1_Button_Reset;
 
-// data comunicaiton robot via EL6631
-P_PNDataConvert();
 
 // Concrete Conctroller enable 
-P_CC1_Enable( b_set_run:= GVL_RESD.b_Concrete_Controller_enable );
-
+P_CC1_Enable( b_set_run:= GVL_ROB.ib_CC1_enable);
 
 
 //***********************************************************************************
@@ -108,10 +105,11 @@ _t_SP1_Check_Duration := INT_TO_TIME(GVL_RESD.n_Sup_Admixture_Pump_Check_Duratio
 //***********************************************************************************	
 fb_SetOutputDataToIO(		
 	// Mixer 
-	b_MI1_set_run := GVL_RESD.b_MI1_set_run,
-	b_Ml1_Enable := GVL_RESD.b_Ml1_Enable,
-	b_MI1_Curved_Speed_On := GVL_RESD.b_MI1_set_curved_speed_mode_on,
-	f_MI1_Override_Speed := GVL_RESD.n_MI1_set_speed,
+	b_MI1_set_run := GVL_ROB.ib_MI1_set_run,
+	b_Ml1_Enable := GVL_ROB.ib_Ml1_enable,
+	b_MI1_Curved_Speed_On := GVL_ROB.ib_MI1_set_curved_speed_mode_on,
+	f_MI1_Override_Speed := UINT_TO_REAL(GVL_ROB.in_MI1_set_speed)*120/65535,
+	
 	f_MI1_Override_Max_Speed := GVL_RESD.f_MI1_Override_Max_Speed,
 	
 	// Concrete Pump
@@ -166,8 +164,8 @@ Mixer1_2(
 	b_JogForward	:= FALSE,
 	b_JogBackwards	:= fb_SetOutputDataToIO.b_MI1_set_run,
 	b_Enable		:= fb_SetOutputDataToIO.b_Ml1_Enable AND GVL_IO.ib_CC1_Safety_Ready,
-	b_Reset			:= GVL_RESD.b_Concrete_Controller_reset OR GVL_IO.ib_CC1_Button_Reset,
-	f_Override		:= fb_SetOutputDataToIO.f_MI1_Override_Speed
+	b_Reset			:= GVL_ROB.ib_CC1_reset OR GVL_IO.ib_CC1_Button_Reset,
+	f_Override		:= GVL.n_MI1_OverrideSpeed,
 	);
 	(*
 	fb_MC_SetPosition(
@@ -225,17 +223,17 @@ END_IF
 fb_getOutputData(
 	
 	//CC1
-	b_mode_manual := GVL_RESD.b_Operate_mode_manual,
-	b_mode_laptop := GVL_RESD.b_Operate_mode_laptop, 	
-	b_mode_robot := GVL_RESD.b_Operate_mode_robot, 
-	b_CC1_power_on := GVL_RESD.b_Concrete_Controller_power_on, 
+	b_mode_manual := GVL_ROB.ob_mode_manual,
+	b_mode_laptop := GVL_ROB.ob_mode_laptop, 	
+	b_mode_robot := GVL_ROB.ob_mode_robot, 
+	b_CC1_power_on := GVL_ROB.ob_CC1_power_on, 
 	n_current_mode := GVL_RESD.n_Concrete_Controller_current_mode,
 
 	//MI1
-	b_MI1_Is_Run := GVL_RESD.b_MI1_Is_Run,
-	b_MI1_is_ready := GVL_RESD.b_MI1_Is_Ready,
-	n_MI1_status_SpeedM1 := GVL_RESD.n_MI1_status_SpeedM1,
-	n_MI1_status_SpeedM2 := GVL_RESD.n_MI1_status_SpeedM2,
+	b_MI1_Is_Run := GVL_ROB.ob_MI1_is_run,
+	b_MI1_is_ready := GVL_ROB.ob_MI1_is_ready,
+	n_MI1_status_SpeedM1 := GVL_ROB.on_MI1_status_speed_motor_1,
+	n_MI1_status_SpeedM2 := GVL_ROB.on_MI1_status_speed_motor_2,
 	f_Status_Torque_Motor_1 := GVL_RESD.f_Status_Torque_Motor_1,
 	f_Status_Torque_Motor_2 := GVL_RESD.f_Status_Torque_Motor_2,
 	f_MI1_status_temperature_funnel_outlet := GVL_RESD.f_MI1_status_temperature_funnel_outlet, 		
@@ -261,12 +259,13 @@ fb_getOutputData(
 ]]></ST>
     </Implementation>
     <LineIds Name="P_Robot_Operate">
-      <LineId Id="117" Count="33" />
-      <LineId Id="355" Count="0" />
-      <LineId Id="342" Count="0" />
-      <LineId Id="151" Count="3" />
-      <LineId Id="343" Count="0" />
-      <LineId Id="155" Count="186" />
+      <LineId Id="117" Count="13" />
+      <LineId Id="390" Count="0" />
+      <LineId Id="132" Count="18" />
+      <LineId Id="394" Count="0" />
+      <LineId Id="152" Count="43" />
+      <LineId Id="395" Count="0" />
+      <LineId Id="196" Count="145" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

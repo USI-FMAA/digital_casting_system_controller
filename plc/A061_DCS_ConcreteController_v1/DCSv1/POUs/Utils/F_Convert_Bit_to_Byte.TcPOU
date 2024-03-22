@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="F_Convert_Bit_to_Byte" Id="{d3d72e6f-0922-4d0d-8992-137d6fe6d061}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION  F_Convert_Bit_to_Byte
+VAR_IN_OUT
+	//dataByte : BYTE;
+	arrBool : ARRAY[0..7] OF BOOL;
+	dataByte : BYTE;
+END_VAR
+
+VAR
+	i : INT; 
+	arrBool_temp : ARRAY[0..7] OF BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// ***********************************************************************************
+//
+// Müller-steinag Gruppe, Kandergrien Einigen, CH-3646 Bern
+// ETH Zurich, Building HIF E26, Laura-Hezner-Weg 7, CH-8093 Zürich
+// 
+// ***********************************************************************************
+// 
+// PROJECT     :  A061 Digital Casting System 
+// FUNCTION    :  Data Converter Bit to Byte
+// AUTHOR      :  Weiting Chen
+// EMAIL       :  chenw@usi.ch
+// Copyright   :  USI Mendrisio; ETH Zürich; Müller-steinag Gruppe (CH) 2023
+//
+// ***********************************************************************************
+
+
+//MEMCPY(ADR(dataByte), ADR(arrBool), SIZEOF(arrBool));
+arrBool_temp[0] := BYTE_TO_BIT(dataByte AND 16#1);
+arrBool_temp[1] := BYTE_TO_BIT(dataByte AND 16#2);
+arrBool_temp[2] := BYTE_TO_BIT(dataByte AND 16#4);
+arrBool_temp[3] := BYTE_TO_BIT(dataByte AND 16#8);
+arrBool_temp[4] := BYTE_TO_BIT(dataByte AND 16#10);
+arrBool_temp[5] := BYTE_TO_BIT(dataByte AND 16#20);
+arrBool_temp[6] := BYTE_TO_BIT(dataByte AND 16#40);
+arrBool_temp[7] := BYTE_TO_BIT(dataByte AND 16#80);
+
+
+arrBool_temp[0] := arrBool[0];
+arrBool_temp[1] := arrBool[1];
+arrBool_temp[2] := arrBool[2];
+arrBool_temp[3] := arrBool[3];
+arrBool_temp[4] := arrBool[4];
+arrBool_temp[5] := arrBool[5];
+arrBool_temp[6] := arrBool[6];
+arrBool_temp[7] := arrBool[7];]]></ST>
+    </Implementation>
+    <LineIds Name="F_Convert_Bit_to_Byte">
+      <LineId Id="15" Count="13" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="119" Count="7" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="140" Count="7" />
+      <LineId Id="133" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

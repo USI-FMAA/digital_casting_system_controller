@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="F_Convert_Uint_to_2Byte" Id="{8efc81d2-ee47-47d4-8f53-c81d38f0bed8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_Convert_Uint_to_2Byte
+VAR_IN_OUT
+	inputNum : UINT; 
+	dataByte1 : BYTE;
+	dataByte2 : BYTE;
+END_VAR
+
+VAR
+	arrByte : ARRAY [0..1] OF BYTE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MEMCPY(ADR(arrByte), ADR(inputNum), 2);
+dataByte1 := arrByte[0];
+dataByte2 := arrByte[1];
+
+//F_Convert_Int_to_2Byte:=arrByte;]]></ST>
+    </Implementation>
+    <LineIds Name="F_Convert_Uint_to_2Byte">
+      <LineId Id="18" Count="3" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

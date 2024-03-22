@@ -25,7 +25,7 @@ GVL.b_mode_manual := GVL_IO.ib_CC1_Button_Mode_Manual;
 GVL.b_mode_laptop := GVL_IO.ib_CC1_Button_Mode_Laptop;
 
 
-
+GVL.b_mode_robot := False;
 IF GVL.b_mode_manual THEN 
 	GVL.s_current_mode := 'Controller';
 ELSIF GVL.b_mode_laptop  THEN

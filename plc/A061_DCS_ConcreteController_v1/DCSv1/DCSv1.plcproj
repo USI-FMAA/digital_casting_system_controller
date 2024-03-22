@@ -21,6 +21,9 @@
     <Compile Include="ComTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\DUTs\arr8Bit.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\GVLs\GVL.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -119,6 +122,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\P_Laptop_Operate.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Utils\F_Convert_2Byte_to_Uint.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Utils\F_Convert_Bit_to_Byte.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Utils\F_Convert_Uint_to_2Byte.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Utils\F_LowpassFilter.TcPOU">

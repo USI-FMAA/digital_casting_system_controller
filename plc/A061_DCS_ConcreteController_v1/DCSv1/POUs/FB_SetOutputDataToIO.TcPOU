@@ -95,14 +95,14 @@ IF b_MI1_Curved_Speed_On THEN
 		_n_temp_speed_MI1:=F_ScalAnalogOut(
 			n_Input:= REAL_TO_INT(P_MI1_Curved_Speed.f_MI1_speed),
 			n_InMin:= 0, 
-			n_InMax:= REAL_TO_INT(f_MI1_Override_Max_Speed), 
+			n_InMax:= 120, 
 			n_OutMin:= 0, 
 			n_OutMax:= 100);
 ELSE
 	_n_temp_speed_MI1:=F_ScalAnalogOut(
 		n_Input:= REAL_TO_INT(f_MI1_Override_Speed),
 		n_InMin:= 0, 
-		n_InMax:= REAL_TO_INT(f_MI1_Override_Max_Speed), 
+		n_InMax:= 120, 
 		n_OutMin:= 0, 
 		n_OutMax:= 100);
 END_IF

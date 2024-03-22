@@ -11,7 +11,9 @@ VAR
 
 	arr_CC1_DOSlot: ARRAY[0..7] OF BOOL;
 	arr_CC1_DISlot: ARRAY[0..7] OF BOOL;
-
+	
+    temp_arr_CC1_DISlot: ARRAY[0..7] OF BOOL;
+	
 	arr_MI1_DOSlot: ARRAY [0..7] OF BOOL;
 	arr_MI1_DISlot: ARRAY [0..7] OF BOOL;
 
@@ -24,7 +26,13 @@ VAR
 	arr_SP1_DOSlot: ARRAY [0..7] OF BOOL;
 	arr_SP1_DISlot: ARRAY [0..7] OF BOOL;
 
+	
+	on_MI1_status_speed_motor_1: Uint;
+	
 END_VAR
+
+
+
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// ***********************************************************************************
@@ -50,25 +58,28 @@ END_VAR
 // Array of GI_To_ROB is 256 to 2047 bits | 32 to 255 bytes
 
 // Group input and output slots
-	arr_GISlot := GVL_PN.GI_To_ROB;
-	arr_GOSlot := GVL_PN.GO_From_ROB;
-
+	MEMCPY(ADR( GVL_PN.GI_To_ROB), ADR(arr_GISlot), SIZEOF(arr_GOSlot));
+	MEMCPY(ADR(arr_GOSlot), ADR(GVL_PN.GO_From_ROB), SIZEOF(arr_GOSlot));
+	
 // Concrete Controller *****
 	// Digital output from robot( mapping from 0 to 7 in robotstudio)
 		arr_CC1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[0]);
-		GVL_ROB.ib_spare := arr_CC1_DOSlot[0]; // #0
+		GVL_ROB.ib_CC1_enable := arr_CC1_DOSlot[0]; // #0
+		GVL_ROB.ib_CC1_reset := arr_CC1_DOSlot[1]; // #1
 
+		
 	// Group output from Robot ( mapping from 32 to 46, 8*2Bytes in robotstudio)
 		F_Convert_2Byte_to_Int(GVL_ROB.in_spare, arr_GOSlot[32], arr_GOSlot[33]); // #256 to 271
 
 	// Digital input to robot (mapping from 0 to 7 in robotstudio)
-		arr_CC1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[0]);
 		arr_CC1_DISlot[0] := GVL_ROB.ob_mode_manual; // #0
 		arr_CC1_DISlot[1] := GVL_ROB.ob_mode_laptop;
 		arr_CC1_DISlot[2] := GVL_ROB.ob_mode_robot;
 		arr_CC1_DISlot[3] := GVL_ROB.ob_CC1_power_on;
-		arr_CC1_DISlot[3] := GVL_ROB.ob_CC1_power_on;
 
+		MEMCPY(ADR(GVL_PN.DI_To_ROB[0]), ADR(arr_CC1_DISlot), SIZEOF(arr_CC1_DISlot));
+	
+		
 	// Group Input To Robot (32 to 46; 8*2Bytes)
 		F_Convert_Int_to_2Byte(GVL_ROB.on_current_mode, arr_GISlot[32], arr_GISlot[33]); // #256 to 271
 
@@ -77,19 +88,26 @@ END_VAR
 	// Digital output from robot ( mapping from 8 to 15 in robotstudio)
 		arr_MI1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[1]);
 		GVL_ROB.ib_MI1_set_run := arr_MI1_DOSlot[0]; // [0 rpm to 120 rpm]
-		GVL_ROB.ib_AP1_check_on := arr_MI1_DOSlot[1];
+		GVL_ROB.ib_Ml1_enable := arr_MI1_DOSlot[1];
 		GVL_ROB.ib_MI1_set_curved_speed_mode_on := arr_MI1_DOSlot[2];
 
 	// Group output from Robot ( mapping from 47 to 61, 8*2Bytes in robotstudio)
-		F_Convert_2Byte_to_Int(GVL_ROB.in_MI1_set_speed, arr_GOSlot[47], arr_GOSlot[48]);
-
+		//F_Convert_2Byte_to_Int(GVL_ROB.in_MI1_set_speed, arr_GOSlot[47], arr_GOSlot[48]);
+		// 
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_MI1_set_speed, arr_GOSlot[47], arr_GOSlot[48]);
+		
+		
 	// Digital input to robot (mapping from 8 to 15 in robotstudio)
-		arr_MI1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[1]);
+		//arr_MI1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[1]);
 		arr_MI1_DISlot[0] := GVL_ROB.ob_MI1_is_run;
 		arr_MI1_DISlot[1] := GVL_ROB.ob_MI1_is_ready;
 
 	// Group Input To Robot (mapping from 47 to 76, 16*2Bytes in robotstudio)
-		F_Convert_Int_to_2Byte(GVL_ROB.on_MI1_status_speed_motor_1, arr_GISlot[47], arr_GISlot[48]);
+		on_MI1_status_speed_motor_1:=REAL_TO_UINT(INT_TO_REAL(GVL_ROB.on_MI1_status_speed_motor_1)/120*65535);
+	
+		F_Convert_Uint_to_2Byte(on_MI1_status_speed_motor_1, arr_GISlot[47], arr_GISlot[48]);
+		//F_Convert_Int_to_2Byte(on_MI1_status_speed_motor_1, arr_GISlot[47], arr_GISlot[48]);
+		
 		F_Convert_Int_to_2Byte(GVL_ROB.on_MI1_status_Speed_motor_2, arr_GISlot[49], arr_GISlot[50]);
 		F_Convert_Int_to_2Byte(GVL_ROB.on_MI1_status_torque_motor_1, arr_GISlot[51], arr_GISlot[52]);
 		F_Convert_Int_to_2Byte(GVL_ROB.on_MI1_status_torque_motor_2, arr_GISlot[53], arr_GISlot[54]);
@@ -119,7 +137,7 @@ END_VAR
 
 
 	// Digital input to robot (mapping from 16 to 23 in robotstudio)
-		arr_CP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[2]);
+		//arr_CP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[2]);
 		arr_CP1_DISlot[0] := GVL_ROB.ob_CP1_is_run; // #16
 		arr_CP1_DISlot[1] := GVL_ROB.ob_CP1_is_ready;
 
@@ -150,7 +168,7 @@ END_VAR
 		// F_Convert_2Byte_to_Int(GVL_ROB.t_AP1_set_check_duration, arr_GOSlot[83], arr_GOSlot[84]); check with 32 bit
 
 	// Digital input to robot (mapping from 24 to 31 in robotstudio)
-		arr_AP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[3]);	// #24
+		//arr_AP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[3]);	// #24
 		arr_AP1_DISlot[0] := GVL_ROB.ob_AP1_is_run;
 
 	// Group Input To Robot (mapping from 92 to 106, 8*2Bytes in robotstudio)
@@ -160,7 +178,7 @@ END_VAR
 
 // Admixture pump, Low dosage ViscoTech Pump *****
 	// Digital output from robot (mapping from 32 to 39 in robotstudio )
-		arr_SP1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[4]);
+		//arr_SP1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[4]);
 		GVL_ROB.ib_SP1_set_run := arr_SP1_DOSlot[0]; // #32
 		GVL_ROB.ib_SP1_set_check_on := arr_SP1_DOSlot[1];
 		GVL_ROB.ib_SP1_flush_on := arr_SP1_DOSlot[2];
@@ -175,7 +193,7 @@ END_VAR
 		// F_Convert_2Byte_to_Int(GVL_ROB.t_SP1_Check_Duration, arr_GOSlot[103], arr_GOSlot[104]); // Check with 32 bit
 
 	// Digital input to robot (mapping from 32 to 39 in robotstudio)
-		arr_SP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[4]);
+		//arr_SP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[4]);
 		GVL_ROB.ob_SP1_is_run := arr_SP1_DISlot[0]; // #32
 
 	// Group Input To Robot (mapping from 106 to 120, 8*2Bytes in robotstudio)
@@ -202,7 +220,27 @@ END_VAR
     <LineIds Name="P_PNDataConvert">
       <LineId Id="27" Count="13" />
       <LineId Id="197" Count="0" />
-      <LineId Id="42" Count="154" />
+      <LineId Id="42" Count="7" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="52" Count="4" />
+      <LineId Id="222" Count="1" />
+      <LineId Id="57" Count="4" />
+      <LineId Id="63" Count="3" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="263" Count="0" />
+      <LineId Id="224" Count="0" />
+      <LineId Id="258" Count="0" />
+      <LineId Id="69" Count="12" />
+      <LineId Id="309" Count="0" />
+      <LineId Id="277" Count="0" />
+      <LineId Id="275" Count="1" />
+      <LineId Id="83" Count="5" />
+      <LineId Id="311" Count="1" />
+      <LineId Id="315" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="310" Count="0" />
+      <LineId Id="90" Count="106" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
