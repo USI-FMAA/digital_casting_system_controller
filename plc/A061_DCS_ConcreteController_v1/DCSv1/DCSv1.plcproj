@@ -124,6 +124,9 @@
     <Compile Include="POUs\P_Laptop_Operate.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\temp.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Utils\F_Convert_2Byte_to_Uint.TcPOU">
       <SubType>Code</SubType>
     </Compile>

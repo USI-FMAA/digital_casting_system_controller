@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="temp" Id="{b52008e0-96b2-4ce5-a515-569672e69aab}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM temp
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+// Concrete pump (CP1) *****
+	// Digital output from robot (mapping from 16 to 23 in robotstudio )
+		arr_CP1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[2]);
+		GVL_ROB.ib_CP1_forward_on := arr_CP1_DOSlot[0]; // #16
+		GVL_ROB.ib_CP1_backward_on := arr_CP1_DOSlot[1];		// 241219 Backward is not working from the conctroller
+		GVL_ROB.ib_CP1_check_on := arr_CP1_DOSlot[2];
+		GVL_ROB.ib_CP1_flush_on := arr_CP1_DOSlot[3];
+
+	// Group output from Robot ( mapping from 62 to 76, 8*2Bytes in robotstudio)
+		F_Convert_2Byte_to_Int(GVL_ROB.in_CP1_set_speed, arr_GOSlot[62], arr_GOSlot[63]); // 0 to 75 [rpm] #62
+		F_Convert_2Byte_to_Int(GVL_ROB.in_CP1_set_flowrate, arr_GOSlot[64], arr_GOSlot[65]); // 0 to 16 [l/min]
+		F_Convert_2Byte_to_Int(GVL_ROB.in_CP1_set_dosing_volume, arr_GOSlot[66], arr_GOSlot[67]); // calibration in 230926 WT 0.32
+		F_Convert_2Byte_to_Int(GVL_ROB.in_CP1_set_check_Flowrate, arr_GOSlot[68], arr_GOSlot[69]);	// [l/min]
+		F_Convert_2Byte_to_Int(GVL_ROB.in_CP1_concrete_density, arr_GOSlot[70], arr_GOSlot[71]); // [g/ml]
+		F_Convert_2Byte_to_Int(GVL_ROB.in_CP1_concrete_mass, arr_GOSlot[72], arr_GOSlot[73]); // [g]
+		F_Convert_2Byte_to_Int(GVL_ROB.in_CP1_set_flush_flowrate, arr_GOSlot[74], arr_GOSlot[75]); // [l/min]
+		// F_Convert_2Byte_to_Int(GVL_ROB.t_CP1_set_check_duration, arr_GOSlot[76], arr_GOSlot[77]);	 check with 32 bit
+
+
+	// Digital input to robot (mapping from 16 to 23 in robotstudio)
+		//arr_CP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[2]);
+		arr_CP1_DISlot[0] := GVL_ROB.ob_CP1_is_run; // #16
+		arr_CP1_DISlot[1] := GVL_ROB.ob_CP1_is_ready;
+
+	// Group Input To Robot (mapping from 77 to 91, 8*2Bytes in robotstudio)
+		F_Convert_Int_to_2Byte(GVL_ROB.on_CP1_status_temperature_concrete_fresh, arr_GISlot[77], arr_GISlot[78]); // [°C]
+		F_Convert_Int_to_2Byte(GVL_ROB.on_CP1_status_temperature_Concrete_pump, arr_GISlot[79], arr_GISlot[80]); // [°C]
+		F_Convert_Int_to_2Byte(GVL_ROB.on_CP1_status_pressure_Concrete_pump, arr_GISlot[81], arr_GISlot[82]); // [ bar]
+
+
+
+
+// Admixture pump, High dosage ViscoTech Pump *****
+	// Digital output from robot (mapping from 24 to 31 in robotstudio )
+		arr_AP1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[3]);
+		GVL_ROB.ib_AP1_set_run := arr_AP1_DOSlot[0]; // #24
+		GVL_ROB.ib_AP1_check_on := arr_AP1_DOSlot[1];
+		GVL_ROB.ib_AP1_flush_on := arr_AP1_DOSlot[2];
+
+	// Group output from Robot ( mapping from 77 to 91, 8*2Bytes in robotstudio)
+		F_Convert_2Byte_to_Int(GVL_ROB.in_AP1_set_flowrate, arr_GOSlot[77], arr_GOSlot[78]); // **** [ml/min] #77
+		F_Convert_2Byte_to_Int(GVL_ROB.in_AP1_set_dosing_factor, arr_GOSlot[79], arr_GOSlot[80]);
+		F_Convert_2Byte_to_Int(GVL_ROB.in_AP1_set_check_flowrate, arr_GOSlot[81], arr_GOSlot[82]);
+		F_Convert_2Byte_to_Int(GVL_ROB.in_AP1_material_density, arr_GOSlot[83], arr_GOSlot[84]);
+		F_Convert_2Byte_to_Int(GVL_ROB.in_AP1_material_mass, arr_GOSlot[85], arr_GOSlot[86]);
+
+		F_Convert_2Byte_to_Int(GVL_ROB.in_AP1_set_dosing_factor, arr_GOSlot[79], arr_GOSlot[80]);
+		F_Convert_2Byte_to_Int(GVL_ROB.in_AP1_flush_flowrate, arr_GOSlot[81], arr_GOSlot[82]);
+		// F_Convert_2Byte_to_Int(GVL_ROB.t_AP1_set_check_duration, arr_GOSlot[83], arr_GOSlot[84]); check with 32 bit
+
+	// Digital input to robot (mapping from 24 to 31 in robotstudio)
+		//arr_AP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[3]);	// #24
+		arr_AP1_DISlot[0] := GVL_ROB.ob_AP1_is_run;
+
+	// Group Input To Robot (mapping from 92 to 106, 8*2Bytes in robotstudio)
+		F_Convert_2Byte_to_Int(GVL_ROB.on_AP1_max_flowrate, arr_GOSlot[92], arr_GOSlot[93]); // [l/min]
+
+
+
+// Admixture pump, Low dosage ViscoTech Pump *****
+	// Digital output from robot (mapping from 32 to 39 in robotstudio )
+		//arr_SP1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[4]);
+		GVL_ROB.ib_SP1_set_run := arr_SP1_DOSlot[0]; // #32
+		GVL_ROB.ib_SP1_set_check_on := arr_SP1_DOSlot[1];
+		GVL_ROB.ib_SP1_flush_on := arr_SP1_DOSlot[2];
+
+	// Group output from Robot ( mapping from 92 to 106, 8*2Bytes in robotstudio)
+		F_Convert_2Byte_to_Int(GVL_ROB.in_SP1_set_flowrate, arr_GOSlot[92], arr_GOSlot[93]); // **** [ml/min] #92
+		F_Convert_2Byte_to_Int(GVL_ROB.in_SP1_dosing_factor, arr_GOSlot[93], arr_GOSlot[94]);
+		F_Convert_2Byte_to_Int(GVL_ROB.in_SP1_set_check_flowrate, arr_GOSlot[95], arr_GOSlot[96]);
+		F_Convert_2Byte_to_Int(GVL_ROB.in_SP1_material_density, arr_GOSlot[97], arr_GOSlot[98]);
+		F_Convert_2Byte_to_Int(GVL_ROB.in_SP1_material_mass, arr_GOSlot[99], arr_GOSlot[100]);
+		F_Convert_2Byte_to_Int(GVL_ROB.in_SP1_flush_flowrate, arr_GOSlot[101], arr_GOSlot[102]);
+		// F_Convert_2Byte_to_Int(GVL_ROB.t_SP1_Check_Duration, arr_GOSlot[103], arr_GOSlot[104]); // Check with 32 bit
+
+	// Digital input to robot (mapping from 32 to 39 in robotstudio)
+		//arr_SP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[4]);
+		GVL_ROB.ob_SP1_is_run := arr_SP1_DISlot[0]; // #32
+
+	// Group Input To Robot (mapping from 106 to 120, 8*2Bytes in robotstudio)
+		F_Convert_2Byte_to_Int(GVL_ROB.on_SP1_max_flowrate, arr_GOSlot[106], arr_GOSlot[107]); // [l/min]>
+
+
+
+// Spare Component *****
+	// Digital output from robot (mapping from 40 to .. in robotstudio )
+		// Template
+		// arr_SP1_DOSlot := F_Convert_Byte_to_Bit(GVL_PN.DO_From_ROB[4]);
+		// GVL_ROB.ib_SP1_set_run := arr_SP1_DOSlot[0];
+
+	// Group output from Robot ( mapping from 107 to .., 8*2Bytes in robotstudio)
+		// F_Convert_2Byte_to_Int(GVL_ROB.in_SP1_set_flowrate, arr_GOSlot[92], arr_GOSlot[93]);
+	// Digital input to robot (mapping from 40 to .. in robotstudio)
+		// Template
+		// arr_SP1_DISlot := F_Convert_Byte_to_Bit(GVL_PN.DI_To_ROB[4]);
+		// GVL_ROB.ob_SP1_is_run:= arr_SP1_DISlot[0]; // #32
+
+	// Group Input To Robot (mapping from 121 to .., 8*2Bytes in robotstudio)
+		// F_Convert_2Byte_to_Int(GVL_ROB.on_SP1_max_flowrate, arr_GOSlot[106], arr_GOSlot[107]);
+//
+*)]]></ST>
+    </Implementation>
+    <LineIds Name="temp">
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="97" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="107" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

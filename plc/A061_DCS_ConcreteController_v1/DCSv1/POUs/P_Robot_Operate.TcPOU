@@ -227,19 +227,19 @@ fb_getOutputData(
 	b_mode_laptop := GVL_ROB.ob_mode_laptop, 	
 	b_mode_robot := GVL_ROB.ob_mode_robot, 
 	b_CC1_power_on := GVL_ROB.ob_CC1_power_on, 
-	n_current_mode := GVL_RESD.n_Concrete_Controller_current_mode,
+	n_current_mode := GVL_ROB.on_current_mode,
 
 	//MI1
 	b_MI1_Is_Run := GVL_ROB.ob_MI1_is_run,
 	b_MI1_is_ready := GVL_ROB.ob_MI1_is_ready,
 	n_MI1_status_SpeedM1 := GVL_ROB.on_MI1_status_speed_motor_1,
 	n_MI1_status_SpeedM2 := GVL_ROB.on_MI1_status_speed_motor_2,
-	f_Status_Torque_Motor_1 := GVL_RESD.f_Status_Torque_Motor_1,
-	f_Status_Torque_Motor_2 := GVL_RESD.f_Status_Torque_Motor_2,
-	f_MI1_status_temperature_funnel_outlet := GVL_RESD.f_MI1_status_temperature_funnel_outlet, 		
-	f_MI1_status_Pressure_funnel_inlet := GVL_RESD.f_MI1_status_Pressure_funnel_inlet, 	
-	f_MI1_status_temperature_motor_1  := GVL_RESD.f_MI1_status_temperature_motor_1, 			 
-	f_MI1_status_temperature_motor_2  := GVL_RESD.f_MI1_status_temperature_motor_2,
+	f_Status_Torque_Motor_1 := GVL_ROB.on_MI1_status_torque_motor_1,
+	f_Status_Torque_Motor_2 := GVL_ROB.on_MI1_status_torque_motor_2,
+	f_MI1_status_temperature_funnel_outlet := GVL_ROB.on_MI1_status_temperature_funnel_outlet,
+	f_MI1_status_Pressure_funnel_inlet := GVL_ROB.on_MI1_status_pressure_funnel_inlet, 	
+	f_MI1_status_temperature_motor_1  := GVL_ROB.on_MI1_status_temperature_motor_1, 			 
+	f_MI1_status_temperature_motor_2  := GVL_ROB.on_MI1_status_temperature_motor_2,
 
 	//CP1
 	b_CP1_is_run := GVL_RESD.b_CP1_is_run,

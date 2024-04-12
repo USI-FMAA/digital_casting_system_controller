@@ -398,6 +398,10 @@ END_CASE
 // Errors
 b_ErrorInt:= fb_Mixer1.b_Error OR fb_Mixer2.b_Error OR fb_MC_GearIn.Error OR fb_MC_GearOut.Error;
 
+IF b_reset THEN
+	fb_MC_GearOut.Execute:=FALSE;
+	fb_MC_GearIn.Execute:=FALSE;
+END_IF
 
 //
 // Outputs
@@ -510,7 +514,13 @@ fb_MC_GearOut(
       <LineId Id="4362" Count="66" />
       <LineId Id="4700" Count="1" />
       <LineId Id="4431" Count="88" />
-      <LineId Id="4521" Count="22" />
+      <LineId Id="4521" Count="3" />
+      <LineId Id="5082" Count="0" />
+      <LineId Id="4525" Count="0" />
+      <LineId Id="5080" Count="0" />
+      <LineId Id="5084" Count="0" />
+      <LineId Id="5081" Count="0" />
+      <LineId Id="4526" Count="17" />
       <LineId Id="4549" Count="6" />
       <LineId Id="4808" Count="0" />
       <LineId Id="4557" Count="2" />
