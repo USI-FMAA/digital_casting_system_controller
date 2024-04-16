@@ -13,7 +13,9 @@ The main package is [Digital Casting System](https://github.com/USI-FMAA/digital
 - [TwinCAT](https://www.beckhoff.com/en-en/products/automation/twincat/?pk_campaign=AdWords-AdWordsSearch-TwinCAT_EN&pk_\
 kwd=twincat&gclid=Cj0KCQjw9ZGYBhCEARIsAEUXITW5dmPmQ2629HIuFY7wfbSR70pi5uY2lkYziNmfKYczm1_YsK4hhPsaApjyEALw_wcB)
 - [ABB RobotStudio]()
-- [Docker]()
+- [Docker](26.0.0)
+
+
 
 ## **Package Information**
 
