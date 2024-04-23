@@ -2,6 +2,21 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <GVL Name="GVL_RESD" Id="{b609842c-d25b-424b-a488-5296437ef3c4}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
+// ***********************************************************************************
+//
+// Müller-steinag Gruppe, Kandergrien Einigen, CH-3646 Bern
+// ETH Zurich, Building Hin E26, Laura-Hezner-Weg 7, CH-8093 Zürich
+// 
+// ***********************************************************************************
+// 
+// PROJECT     :  A061 Digital Casting System 
+// FUNCTION    :  Global Proninet Varable with robot
+// AUTHOR      :  Weiting Chen
+// EMAIL       :  chenw@usi.ch
+// Copyright   :  USI Mendrisio; ETH Zürich; Müller-steinag Gruppe (CH) 2023
+//
+// **************S*********************************************************************
+
 VAR_GLOBAL
 	
 CONCRETE_CONTROLLER: STRING := 'MIXER';//***********************************************************
