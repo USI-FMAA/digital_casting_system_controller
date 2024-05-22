@@ -2372,7 +2372,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{C29FE267-D081-4438-A6F8-D544C2CCE89E}" Name="DCSv1" PrjFilePath="DCSv1\DCSv1.plcproj" TmcFilePath="DCSv1\DCSv1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="DCSv1\DCSv1.tmc" TmcHash="{BBD97E28-F37A-AC44-2D7C-CE335E424DFD}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="DCSv1\DCSv1.tmc" TmcHash="{179FBDC3-359C-C374-9E37-C060E929AEF8}">
 					<Name>DCSv1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -2474,6 +2474,11 @@ External Setpoint Generation:
 							<Type>INT</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.ib_CC1_Safety_Ready</Name>
+							<Comment><![CDATA[ Safety ready for line mixer button ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.in_MID1_ActAbsCurrent</Name>
 							<Comment><![CDATA[ Hardware Inputs
 
@@ -2492,11 +2497,6 @@ External Setpoint Generation:
 						<Var>
 							<Name>GVL_IO.in_MID2_ActMotorTemperature</Name>
 							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_CC1_Safety_Ready</Name>
-							<Comment><![CDATA[ Safety ready for line mixer button ]]></Comment>
-							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ib_CC1_Button_Mode_Manual</Name>
@@ -2524,11 +2524,6 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.ib_AP1_Button_On</Name>
-							<Comment><![CDATA[ Accelerator Pump 1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.in_CP1_Tube_Pressure_Sensor</Name>
 							<Comment><![CDATA[??]]></Comment>
 							<Type>INT</Type>
@@ -2537,6 +2532,11 @@ External Setpoint Generation:
 							<Name>GVL_IO.in_CP1_Tube_Temperature_Sensor</Name>
 							<Comment><![CDATA[??]]></Comment>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_AP1_Button_On</Name>
+							<Comment><![CDATA[ Accelerator Pump 1]]></Comment>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ib_AP1_Button_Not_Off</Name>
@@ -2551,14 +2551,14 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.in_AP1_Poti_Speed</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.ib_SP1_Button_On</Name>
 							<Comment><![CDATA[ 
  Superplasticizer Pump 1 (WT 220915)]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_AP1_Poti_Speed</Name>
-							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ib_SP1_Button_Not_Off</Name>
@@ -2720,13 +2720,13 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.on_CP1_Speed</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.ob_AP1_Power_On</Name>
 							<Comment><![CDATA[ Admixture Pump 1]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.on_CP1_Speed</Name>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ob_AP1_Start</Name>
@@ -2745,14 +2745,14 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.on_AP1_Speed</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.ob_SP1_Power_On</Name>
 							<Comment><![CDATA[ 
  Sup-Admixture Pump 1]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.on_AP1_Speed</Name>
-							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ob_SP1_Start</Name>
@@ -10425,8 +10425,53 @@ Submodule Info: DO 256 bytes
 			<OwnerB Name="TIID^Device 1 (EL6631-0010)^robotbasicio">
 				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[0]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 0"/>
 				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[1]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 1"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[2]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 2"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[3]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 3"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[4]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 4"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[100]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 100"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[101]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 101"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[102]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 102"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[103]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 103"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[104]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 104"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[105]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 105"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[32]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 32"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[33]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 33"/>
 				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[47]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 47"/>
 				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[48]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 48"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[62]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 62"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[63]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 63"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[64]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 64"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[65]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 65"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[66]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 66"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[67]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 67"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[68]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 68"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[69]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 69"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[70]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 70"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[71]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 71"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[72]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 72"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[73]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 73"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[74]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 74"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[75]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 75"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[78]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 78"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[79]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 79"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[80]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 80"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[81]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 81"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[82]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 82"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[83]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 83"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[84]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 84"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[85]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 85"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[86]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 86"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[87]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 87"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[88]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 88"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[89]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 89"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[90]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 90"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[91]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 91"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[94]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 94"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[95]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 95"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[96]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 96"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[97]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 97"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[98]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 98"/>
+				<Link VarA="PlcTask Inputs^GVL_PN.GO_From_ROB[99]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 99"/>
 				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[0]^data8Bit[0]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 0[0]"/>
 				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[0]^data8Bit[1]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 0[1]"/>
 				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[0]^data8Bit[2]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 0[2]"/>
@@ -10443,6 +10488,34 @@ Submodule Info: DO 256 bytes
 				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[1]^data8Bit[5]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 1[5]"/>
 				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[1]^data8Bit[6]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 1[6]"/>
 				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[1]^data8Bit[7]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 1[7]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[2]^data8Bit[0]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 2[0]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[2]^data8Bit[1]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 2[1]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[2]^data8Bit[2]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 2[2]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[2]^data8Bit[3]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 2[3]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[2]^data8Bit[4]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 2[4]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[2]^data8Bit[5]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 2[5]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[2]^data8Bit[6]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 2[6]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[2]^data8Bit[7]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 2[7]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[3]^data8Bit[0]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 3[0]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[3]^data8Bit[1]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 3[1]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[3]^data8Bit[2]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 3[2]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[3]^data8Bit[3]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 3[3]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[3]^data8Bit[4]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 3[4]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[3]^data8Bit[5]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 3[5]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[3]^data8Bit[6]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 3[6]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[3]^data8Bit[7]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 3[7]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[4]^data8Bit[0]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 4[0]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[4]^data8Bit[1]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 4[1]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[4]^data8Bit[2]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 4[2]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[4]^data8Bit[3]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 4[3]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[4]^data8Bit[4]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 4[4]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[4]^data8Bit[5]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 4[5]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[4]^data8Bit[6]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 4[6]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.DI_To_ROB[4]^data8Bit[7]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 4[7]"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[106]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 106"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[107]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 107"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[32]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 32"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[33]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 33"/>
 				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[47]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 47"/>
 				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[48]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 48"/>
 				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[49]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 49"/>
@@ -10459,6 +10532,14 @@ Submodule Info: DO 256 bytes
 				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[60]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 60"/>
 				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[61]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 61"/>
 				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[62]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 62"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[77]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 77"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[78]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 78"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[79]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 79"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[80]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 80"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[81]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 81"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[82]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 82"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[92]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 92"/>
+				<Link VarA="PlcTask Outputs^GVL_PN.GI_To_ROB[93]" VarB="API^Term 2 (DI 256 bytes)^Subterm 4 (DI 256 bytes)^Outputs^Input 93"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 10 (EL1008) new">
 				<Link VarA="PlcTask Inputs^GVL_IO.ib_SP1_No_Error" VarB="Channel 2^Input"/>

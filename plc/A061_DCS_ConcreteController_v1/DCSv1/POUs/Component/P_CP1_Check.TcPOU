@@ -150,7 +150,7 @@ END_IF
 // ****************************************
 t_CP1_Check_Time(
 	IN:=n_Step=25,
-	PT:=GVL_ResearchData.n_RED_Concrete_Pump_Check_Duration_Time);
+	PT:=t_check_duration);
 
 // ****************************************
 // Reset

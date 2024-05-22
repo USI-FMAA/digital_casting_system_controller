@@ -113,44 +113,44 @@ fb_SetOutputDataToIO(
 	f_MI1_Override_Max_Speed := GVL_RESD.f_MI1_Override_Max_Speed,
 	
 	// Concrete Pump
-	b_CP1_Forward_On := GVL_RESD.b_Concrete_Pump_Forward_On,
-	b_CP1_Backward_On := GVL_RESD.b_Concrete_Pump_Backward_On,
-	b_CP1_Flush_On := GVL_RESD.b_Concrete_Pump_Flush_On,
-	b_CP1_Check_On := GVL_RESD.b_Concrete_Pump_Check_On,
+	b_CP1_Forward_On := GVL_ROB.ib_CP1_forward_on,
+	b_CP1_Backward_On := GVL_ROB.ib_CP1_backward_on,
+	b_CP1_Flush_On := GVL_ROB.ib_CP1_flush_on,
+	b_CP1_Check_On := GVL_ROB.ib_CP1_check_on,
 	n_CP_Flowrate_mode := TRUE,
-	n_CP1_Operate_Flowrate := REAL_TO_INT(GVL_RESD.f_Concrete_Pump_Set_Flowrate*100),
-	n_CP1_Check_Flowrate := REAL_TO_INT(GVL_RESD.f_Concrete_Pump_Check_Flowrate*100),
-	n_CP1_Flush_Flowrate := REAL_TO_INT(GVL_RESD.n_Concrete_Pump_Flush_Flowrate*100),
-	f_dosing_volume := REAL_TO_INT(GVL_RESD.f_Concrete_Pump_dosing_volume*100),
+	n_CP1_Operate_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_CP1_set_flowrate*24)/65535)*100),
+	n_CP1_Check_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_CP1_set_check_Flowrate*24)/65535)*100),
+	n_CP1_Flush_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_CP1_set_flush_flowrate*24)/65535)*100),
+	f_dosing_volume := UINT_TO_INT(GVL_ROB.in_CP1_set_dosing_volume),
 	
 	n_CP1_max_speed := GVL_RESD.n_Concrete_Pump_Max_Speed,
-	n_CP1_target_speed := GVL_RESD.n_Concrete_Pump_Set_Speed,
+	n_CP1_target_speed := UINT_TO_INT(GVL_ROB.in_CP1_set_speed),
 
 	// Admixture pump (High)
-	b_AP1_Power_On := GVL_RESD.b_Admixture_Pump_Power_On,
-	b_AP1_Run := GVL_RESD.b_Admixture_Pump_Set_Run,
-	b_AP1_Flush_On := GVL_RESD.b_Admixture_Pump_Flush_On,
-	b_AP1_Check_On := GVL_RESD.b_Admixture_Pump_Check_On,
+	b_AP1_Power_On := GVL_ROB.ib_AP1_power_on,
+	b_AP1_Run := GVL_ROB.ib_AP1_set_run,
+	b_AP1_Flush_On := GVL_ROB.ib_AP1_flush_on,
+	b_AP1_Check_On := GVL_ROB.ib_AP1_check_on,
 	
 	n_AP1_Flowrate_mode := TRUE,
-	n_AP1_Max_Flowrate := GVL_RESD.n_Admixture_Pump_Max_Flowrate,
-	n_AP1_Operate_Flowrate := REAL_TO_INT(GVL_RESD.f_Admixture_Pump_Set_Flowrate*10),
-	n_AP1_Check_Flowrate := REAL_TO_INT(GVL_RESD.f_Admixture_Pump_Check_Flowrate*10),
-	n_AP1_Flush_Flowrate := REAL_TO_INT(GVL_RESD.f_Admixture_Pump_Flush_Flowrate*10),
-	n_AP1_Dosing_factor := REAL_TO_INT(GVL_RESD.f_Admixture_Pump_dosing_factor*10),
+	n_AP1_Max_Flowrate := UINT_TO_INT(GVL_ROB.on_AP1_max_flowrate),
+	n_AP1_Operate_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_AP1_set_flowrate*GVL_ROB.on_AP1_max_flowrate)/65535)*10),
+	n_AP1_Check_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_AP1_set_check_flowrate*GVL_ROB.on_AP1_max_flowrate)/65535)*10),
+	n_AP1_Flush_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_AP1_flush_flowrate*GVL_ROB.on_AP1_max_flowrate)/65535)*10),
+	n_AP1_Dosing_factor := UINT_TO_INT(GVL_ROB.in_AP1_set_dosing_factor),
 	
 	// Admixture pump (High)
-	b_SP1_Power_On := GVL_RESD.b_Sup_Admixture_Pump_Power_On,
-	b_SP1_Run := GVL_RESD.b_Sup_Admixture_Pump_Set_Run,
-	b_SP1_Flush_On := GVL_RESD.b_Sup_Admixture_Pump_Flush_On,
-	b_SP1_Check_On := GVL_RESD.b_Sup_Admixture_Pump_Check_On,
+	b_SP1_Power_On := GVL_ROB.ib_SP1_power_on,
+	b_SP1_Run := GVL_ROB.ib_SP1_set_run,
+	b_SP1_Flush_On := GVL_ROB.ib_SP1_flush_on,
+	b_SP1_Check_On := GVL_ROB.ib_SP1_set_check_on,
 	
 	n_SP1_Flowrate_mode := TRUE,
-	n_SP1_Max_Flowrate := GVL_RESD.n_Sup_Admixture_Pump_Max_Flowrate,
-	n_SP1_Operate_Flowrate := REAL_TO_INT(GVL_RESD.f_Sup_Admixture_Pump_Set_Flowrate*10),
-	n_SP1_Check_Flowrate := REAL_TO_INT(GVL_RESD.f_Sup_Admixture_Pump_Check_Flowrate*10),
-	n_SP1_Flush_Flowrate := REAL_TO_INT(GVL_RESD.f_Sup_Admixture_Pump_Flush_Flowrate*10),
-	n_SP1_Dosing_factor := REAL_TO_INT(GVL_RESD.f_Sup_Admixture_Pump_dosing_factor*10),
+	n_SP1_Max_Flowrate := UINT_TO_INT(GVL_ROB.on_SP1_max_flowrate),
+	n_SP1_Operate_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_SP1_set_flowrate*GVL_ROB.on_SP1_max_flowrate)/65535)*10),
+	n_SP1_Check_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_SP1_set_check_flowrate*GVL_ROB.on_SP1_max_flowrate)/65535)*10),
+	n_SP1_Flush_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_SP1_flush_flowrate*GVL_ROB.on_SP1_max_flowrate)/65535)*10),
+	n_SP1_Dosing_factor := UINT_TO_INT(GVL_ROB.in_SP1_dosing_factor),
 	);
 
 //***********************************************************************************
@@ -242,19 +242,19 @@ fb_getOutputData(
 	f_MI1_status_temperature_motor_2  := GVL_ROB.on_MI1_status_temperature_motor_2,
 
 	//CP1
-	b_CP1_is_run := GVL_RESD.b_CP1_is_run,
-	b_CP1_is_ready := GVL_RESD.b_CP1_is_ready,
-	f_CP1_status_temperature_concrete_fresh := GVL_RESD.f_CP1_status_temperature_concrete_fresh,
-	f_CP1_status_temperature_Concrete_pump := GVL_RESD.f_CP1_status_temperature_Concrete_pump,
-	f_CP1_status_pressure_Concrete_pump := GVL_RESD.f_CP1_status_pressure_Concrete_pump,
+	b_CP1_is_run := GVL_ROB.ob_CP1_is_run,
+	b_CP1_is_ready := GVL_ROB.ob_CP1_is_ready,
+	f_CP1_status_temperature_concrete_fresh := GVL_ROB.on_CP1_status_temperature_concrete_fresh,
+	f_CP1_status_temperature_Concrete_pump := GVL_ROB.on_CP1_status_temperature_Concrete_pump,
+	f_CP1_status_pressure_Concrete_pump := GVL_ROB.on_CP1_status_pressure_Concrete_pump,
 	
 	//AP1
-	b_AP1_is_run := GVL_RESD.b_Admixture_Pump_is_run,
-	b_AP1_is_ready := GVL_RESD.b_Admixture_Pump_is_run,
+	b_AP1_is_run := GVL_ROB.ob_AP1_is_run,
+	b_AP1_is_ready := GVL_ROB.ob_AP1_is_ready,
 	
 	//SP1
-	b_SP1_is_run := GVL_RESD.b_Sup_Admixture_Pump_is_run,
-	b_SP1_is_ready := GVL_RESD.b_Sup_Admixture_Pump_is_ready,
+	b_SP1_is_run := GVL_ROB.ob_SP1_is_run,
+	b_SP1_is_ready := GVL_ROB.ob_SP1_is_ready,
 );
 ]]></ST>
     </Implementation>

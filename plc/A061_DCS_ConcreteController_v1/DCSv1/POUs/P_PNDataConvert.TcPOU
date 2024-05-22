@@ -107,7 +107,7 @@ END_VAR
 	// Group output from Robot ( mapping from 47 to 61, 8*2Bytes in robotstudio)
 		//F_Convert_2Byte_to_Int(GVL_ROB.in_MI1_set_speed, arr_GOSlot[47], arr_GOSlot[48]);
 		// 
-		F_Convert_2Byte_to_Uint(GVL_ROB.in_MI1_set_speed, arr_GOSlot[47], arr_GOSlot[48]);
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_MI1_set_speed, arr_GOSlot[47], arr_GOSlot[48]); // 376-391
 		
 		
 	// Digital input to robot (mapping from 8 to 15 in robotstudio)
@@ -153,7 +153,7 @@ END_VAR
 		GVL_ROB.ib_CP1_flush_on := arr_CP1_DOSlot[3];
 
 	// Group output from Robot ( mapping from 62 to 76, 8*2Bytes in robotstudio)
-		F_Convert_2Byte_to_Uint(GVL_ROB.in_CP1_set_speed, arr_GOSlot[62], arr_GOSlot[63]); // 0 to 75 [rpm] #62
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_CP1_set_speed, arr_GOSlot[62], arr_GOSlot[63]); // 0 to 75 [rpm] #496
 		F_Convert_2Byte_to_Uint(GVL_ROB.in_CP1_set_flowrate, arr_GOSlot[64], arr_GOSlot[65]); // 0 to 16 [l/min]
 		F_Convert_2Byte_to_Uint(GVL_ROB.in_CP1_set_dosing_volume, arr_GOSlot[66], arr_GOSlot[67]); 	// calibration in 230926 WT 0.32
 		F_Convert_2Byte_to_Uint(GVL_ROB.in_CP1_set_check_Flowrate, arr_GOSlot[68], arr_GOSlot[69]);	// [l/min]
@@ -171,18 +171,80 @@ END_VAR
 		MEMCPY(ADR(GVL_PN.DI_To_ROB[2]), ADR(arr_CP1_DISlot), SIZEOF(arr_CP1_DISlot));
 
 	// Group Input To Robot (mapping from 77 to 91, 8*2Bytes in robotstudio)
-		on_CP1_status_temperature_concrete_fresh := REAL_TO_UINT(GVL_ROB.on_CP1_status_temperature_concrete_fresh*100);
-		on_CP1_status_temperature_Concrete_pump := REAL_TO_UINT(GVL_ROB.on_CP1_status_temperature_Concrete_pump*100);
+		on_CP1_status_temperature_concrete_fresh := REAL_TO_UINT(GVL_ROB.on_CP1_status_temperature_concrete_fresh);
+		on_CP1_status_temperature_Concrete_pump := REAL_TO_UINT(GVL_ROB.on_CP1_status_temperature_Concrete_pump);
 		on_CP1_status_pressure_Concrete_pump := REAL_TO_UINT(GVL_ROB.on_CP1_status_pressure_Concrete_pump*100);
 
-		F_Convert_Uint_to_2Byte(GVL_ROB.on_CP1_status_temperature_concrete_fresh, arr_GISlot[77], arr_GISlot[78]); // [°C]
-		F_Convert_Uint_to_2Byte(GVL_ROB.on_CP1_status_temperature_Concrete_pump, arr_GISlot[79], arr_GISlot[80]); // [°C]
-		F_Convert_Uint_to_2Byte(GVL_ROB.on_CP1_status_pressure_Concrete_pump, arr_GISlot[81], arr_GISlot[82]); // [ bar]
+		F_Convert_Uint_to_2Byte(on_CP1_status_temperature_concrete_fresh, arr_GISlot[77], arr_GISlot[78]); // [°C] #624-639
+		F_Convert_Uint_to_2Byte(on_CP1_status_temperature_Concrete_pump, arr_GISlot[79], arr_GISlot[80]); // [°C]
+		F_Convert_Uint_to_2Byte(on_CP1_status_pressure_Concrete_pump, arr_GISlot[81], arr_GISlot[82]); // [ bar]
 
+// Admixture pump, High dosage ViscoTech Pump *****
+	// Digital output from robot (mapping from 24 to 31 in robotstudio )
+		arr_AP1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[3]);
+		GVL_ROB.ib_AP1_set_run := arr_AP1_DOSlot[0]; // #24
+		GVL_ROB.ib_AP1_check_on := arr_AP1_DOSlot[1];
+		GVL_ROB.ib_AP1_flush_on := arr_AP1_DOSlot[2];
+		GVL_ROB.ib_AP1_power_on := arr_AP1_DOSlot[3];
 		
+
+	// Group output from Robot ( mapping from 77 to 91, 8*2Bytes in robotstudio)
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_set_flowrate, arr_GOSlot[78], arr_GOSlot[79]); // **** [ml/min] #77
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_set_dosing_factor, arr_GOSlot[80], arr_GOSlot[81]);
 		
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_set_check_flowrate, arr_GOSlot[82], arr_GOSlot[83]);
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_material_density, arr_GOSlot[84], arr_GOSlot[85]);
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_material_mass, arr_GOSlot[86], arr_GOSlot[87]);
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_flush_flowrate, arr_GOSlot[88], arr_GOSlot[89]);
+		// F_Convert_2Byte_to_Int(GVL_ROB.t_AP1_set_check_duration, arr_GOSlot[90], arr_GOSlot[92]); check with 32 bit
+
+	// Digital input to robot (mapping from 24 to 31 in robotstudio)
+		//arr_AP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[3]);	// #24
+		arr_AP1_DISlot[0] := GVL_ROB.ob_AP1_is_run;
+		arr_AP1_DISlot[1] := GVL_ROB.ob_AP1_is_ready;
 		
+		MEMCPY(ADR(GVL_PN.DI_To_ROB[3]), ADR(arr_AP1_DISlot), SIZEOF(arr_AP1_DISlot));
 		
+	// Group Input To Robot (mapping from 92 to 106, 8*2Bytes in robotstudio)
+		F_Convert_Uint_to_2Byte(GVL_ROB.on_AP1_max_flowrate, arr_GOSlot[92], arr_GOSlot[93]); // [l/min]
+
+// Admixture pump, Low dosage ViscoTech Pump *****
+	// Digital output from robot (mapping from 32 to 39 in robotstudio )
+		arr_SP1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[4]);
+		GVL_ROB.ib_SP1_set_run := arr_SP1_DOSlot[0]; // #32
+		GVL_ROB.ib_SP1_set_check_on := arr_SP1_DOSlot[1];
+		GVL_ROB.ib_SP1_flush_on := arr_SP1_DOSlot[2];
+		GVL_ROB.ib_SP1_power_on := arr_SP1_DOSlot[3];
+
+	// Group output from Robot ( mapping from 92 to 106, 8*2Bytes in robotstudio)
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_set_flowrate, arr_GOSlot[94], arr_GOSlot[95]); // **** [ml/min] #92
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_dosing_factor, arr_GOSlot[96], arr_GOSlot[97]);
+		
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_set_check_flowrate, arr_GOSlot[98], arr_GOSlot[99]);
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_material_density, arr_GOSlot[100], arr_GOSlot[101]);
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_material_mass, arr_GOSlot[102], arr_GOSlot[103]);
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_flush_flowrate, arr_GOSlot[104], arr_GOSlot[105]);
+		
+		// F_Convert_2Byte_to_Int(GVL_ROB.t_SP1_Check_Duration, arr_GOSlot[106], arr_GOSlot[107]); // Check with 32 bit
+
+	// Digital input to robot (mapping from 32 to 39 in robotstudio)
+		//arr_SP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[4]);
+		arr_SP1_DISlot[0] := GVL_ROB.ob_SP1_is_run; // #32
+		arr_SP1_DISlot[1] := GVL_ROB.ob_SP1_is_ready;
+		
+		MEMCPY(ADR(GVL_PN.DI_To_ROB[4]), ADR(arr_SP1_DISlot), SIZEOF(arr_SP1_DISlot));
+
+	// Group Input To Robot (mapping from 106 to 120, 8*2Bytes in robotstudio)
+		F_Convert_Uint_to_2Byte(GVL_ROB.on_SP1_max_flowrate, arr_GOSlot[106], arr_GOSlot[107]); // [l/min]
+
+(*
+// Spare Component *****
+	// Digital output from robot (mapping from 40 to .. in robotstudio )
+	// Group output from Robot ( mapping from 107 to .., 8*2Bytes in robotstudio)
+	// Digital input to robot (mapping from 40 to .. in robotstudio)
+	// Group Input To Robot (mapping from 121 to .., 8*2Bytes in robotstudio)
+//
+*)
 		
 		
 		
@@ -301,9 +363,35 @@ END_VAR
       <LineId Id="567" Count="1" />
       <LineId Id="565" Count="0" />
       <LineId Id="486" Count="2" />
-      <LineId Id="497" Count="0" />
+      <LineId Id="615" Count="6" />
+      <LineId Id="696" Count="0" />
+      <LineId Id="695" Count="0" />
+      <LineId Id="622" Count="3" />
+      <LineId Id="641" Count="0" />
+      <LineId Id="626" Count="2" />
+      <LineId Id="630" Count="0" />
+      <LineId Id="632" Count="4" />
+      <LineId Id="642" Count="2" />
+      <LineId Id="637" Count="1" />
+      <LineId Id="614" Count="0" />
+      <LineId Id="647" Count="6" />
+      <LineId Id="697" Count="0" />
+      <LineId Id="654" Count="3" />
+      <LineId Id="691" Count="0" />
+      <LineId Id="658" Count="3" />
+      <LineId Id="690" Count="0" />
+      <LineId Id="662" Count="4" />
+      <LineId Id="693" Count="0" />
+      <LineId Id="692" Count="0" />
+      <LineId Id="694" Count="0" />
+      <LineId Id="667" Count="2" />
+      <LineId Id="671" Count="3" />
+      <LineId Id="679" Count="0" />
+      <LineId Id="684" Count="0" />
+      <LineId Id="686" Count="0" />
+      <LineId Id="688" Count="0" />
       <LineId Id="457" Count="0" />
-      <LineId Id="525" Count="39" />
+      <LineId Id="528" Count="36" />
       <LineId Id="498" Count="26" />
       <LineId Id="403" Count="0" />
       <LineId Id="405" Count="0" />
