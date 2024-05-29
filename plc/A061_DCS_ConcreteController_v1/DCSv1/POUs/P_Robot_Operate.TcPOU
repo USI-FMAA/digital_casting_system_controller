@@ -18,7 +18,7 @@ VAR
 	fb_setConfig : FB_SetConfigData;
 	
 	//
-	b_Safety_Reset : BOOL;
+	b_Safety_Reset : BOOL :=FALSE;
 	b_Timer_Rest : BOOL;
 	t_CC1_Time_Safety_Rest : TIME :=T#5S; //wait 5s for controller restart
 	fb_CC1_Trigger_Safety_On : R_TRIG;
@@ -58,12 +58,12 @@ fb_CC1_Trigger_Safety_Off(clk:=fb_CC1_Timer_Safety.Q);
 //b_Safety_Reset:=FALSE;
 IF fb_CC1_Trigger_Safety_On.Q THEN
 	b_Safety_Reset:=TRUE;
-END_IF
-IF fb_CC1_Trigger_Safety_Off.Q THEN 
-	b_Safety_Reset:=FALSE;
+ELSIF
+	fb_CC1_Trigger_Safety_Off.Q THEN 
 	GVL_ROB.ib_CC1_reset:=FALSE;
+	b_Safety_Reset:=FALSE;
 END_IF
-GVL_IO.ob_CC1_Safety_Reset:= b_Safety_Reset OR GVL_IO.ib_CC1_Button_Reset;
+GVL_IO.ob_CC1_Safety_Reset:= GVL_ROB.ib_CC1_reset OR GVL_IO.ib_CC1_Button_Reset;
 
 
 // Concrete Conctroller enable 
@@ -108,7 +108,7 @@ fb_SetOutputDataToIO(
 	b_MI1_set_run := GVL_ROB.ib_MI1_set_run,
 	b_Ml1_Enable := GVL_ROB.ib_Ml1_enable,
 	b_MI1_Curved_Speed_On := GVL_ROB.ib_MI1_set_curved_speed_mode_on,
-	f_MI1_Override_Speed := UINT_TO_REAL(GVL_ROB.in_MI1_set_speed)*120/65535,
+	f_MI1_Override_Speed := UINT_TO_REAL(GVL_ROB.in_MI1_set_speed),
 	
 	f_MI1_Override_Max_Speed := GVL_RESD.f_MI1_Override_Max_Speed,
 	
@@ -118,9 +118,9 @@ fb_SetOutputDataToIO(
 	b_CP1_Flush_On := GVL_ROB.ib_CP1_flush_on,
 	b_CP1_Check_On := GVL_ROB.ib_CP1_check_on,
 	n_CP_Flowrate_mode := TRUE,
-	n_CP1_Operate_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_CP1_set_flowrate*24)/65535)*100),
-	n_CP1_Check_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_CP1_set_check_Flowrate*24)/65535)*100),
-	n_CP1_Flush_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_CP1_set_flush_flowrate*24)/65535)*100),
+	n_CP1_Operate_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_CP1_set_flowrate*10))),
+	n_CP1_Check_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_CP1_set_check_Flowrate*10))),
+	n_CP1_Flush_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_CP1_set_flush_flowrate*10))),
 	f_dosing_volume := UINT_TO_INT(GVL_ROB.in_CP1_set_dosing_volume),
 	
 	n_CP1_max_speed := GVL_RESD.n_Concrete_Pump_Max_Speed,
@@ -134,9 +134,9 @@ fb_SetOutputDataToIO(
 	
 	n_AP1_Flowrate_mode := TRUE,
 	n_AP1_Max_Flowrate := UINT_TO_INT(GVL_ROB.on_AP1_max_flowrate),
-	n_AP1_Operate_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_AP1_set_flowrate*GVL_ROB.on_AP1_max_flowrate)/65535)*10),
-	n_AP1_Check_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_AP1_set_check_flowrate*GVL_ROB.on_AP1_max_flowrate)/65535)*10),
-	n_AP1_Flush_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_AP1_flush_flowrate*GVL_ROB.on_AP1_max_flowrate)/65535)*10),
+	n_AP1_Operate_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_AP1_set_flowrate*10))),
+	n_AP1_Check_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_AP1_set_check_flowrate*10))),
+	n_AP1_Flush_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_AP1_flush_flowrate*10))),
 	n_AP1_Dosing_factor := UINT_TO_INT(GVL_ROB.in_AP1_set_dosing_factor),
 	
 	// Admixture pump (High)
@@ -147,9 +147,9 @@ fb_SetOutputDataToIO(
 	
 	n_SP1_Flowrate_mode := TRUE,
 	n_SP1_Max_Flowrate := UINT_TO_INT(GVL_ROB.on_SP1_max_flowrate),
-	n_SP1_Operate_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_SP1_set_flowrate*GVL_ROB.on_SP1_max_flowrate)/65535)*10),
-	n_SP1_Check_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_SP1_set_check_flowrate*GVL_ROB.on_SP1_max_flowrate)/65535)*10),
-	n_SP1_Flush_Flowrate := REAL_TO_INT((UINT_TO_REAL(GVL_ROB.in_SP1_flush_flowrate*GVL_ROB.on_SP1_max_flowrate)/65535)*10),
+	n_SP1_Operate_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_SP1_set_flowrate*10))),
+	n_SP1_Check_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_SP1_set_check_flowrate*10))),
+	n_SP1_Flush_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_SP1_flush_flowrate*10))),
 	n_SP1_Dosing_factor := UINT_TO_INT(GVL_ROB.in_SP1_dosing_factor),
 	);
 
@@ -244,6 +244,10 @@ fb_getOutputData(
 	//CP1
 	b_CP1_is_run := GVL_ROB.ob_CP1_is_run,
 	b_CP1_is_ready := GVL_ROB.ob_CP1_is_ready,
+	b_CP1_power_on := GVL_ROB.ob_CP1_power_on,
+	b_CP1_safety_grid_on := GVL_ROB.ob_CP1_safety_grid_on,
+	b_CP1_drive_error := GVL_ROB.ob_CP1_drive_error,
+	
 	f_CP1_status_temperature_concrete_fresh := GVL_ROB.on_CP1_status_temperature_concrete_fresh,
 	f_CP1_status_temperature_Concrete_pump := GVL_ROB.on_CP1_status_temperature_Concrete_pump,
 	f_CP1_status_pressure_Concrete_pump := GVL_ROB.on_CP1_status_pressure_Concrete_pump,
@@ -251,21 +255,35 @@ fb_getOutputData(
 	//AP1
 	b_AP1_is_run := GVL_ROB.ob_AP1_is_run,
 	b_AP1_is_ready := GVL_ROB.ob_AP1_is_ready,
+	b_AP1_no_error := GVL_ROB.ob_AP1_no_error,
 	
 	//SP1
 	b_SP1_is_run := GVL_ROB.ob_SP1_is_run,
 	b_SP1_is_ready := GVL_ROB.ob_SP1_is_ready,
+	b_SP1_no_error := GVL_ROB.ob_SP1_no_error,
 );
 ]]></ST>
     </Implementation>
     <LineIds Name="P_Robot_Operate">
       <LineId Id="117" Count="13" />
       <LineId Id="390" Count="0" />
-      <LineId Id="132" Count="18" />
+      <LineId Id="132" Count="12" />
+      <LineId Id="430" Count="0" />
+      <LineId Id="432" Count="1" />
+      <LineId Id="431" Count="0" />
+      <LineId Id="149" Count="1" />
       <LineId Id="394" Count="0" />
       <LineId Id="152" Count="43" />
       <LineId Id="395" Count="0" />
-      <LineId Id="196" Count="145" />
+      <LineId Id="196" Count="133" />
+      <LineId Id="426" Count="1" />
+      <LineId Id="425" Count="0" />
+      <LineId Id="428" Count="0" />
+      <LineId Id="330" Count="6" />
+      <LineId Id="423" Count="0" />
+      <LineId Id="337" Count="3" />
+      <LineId Id="424" Count="0" />
+      <LineId Id="341" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

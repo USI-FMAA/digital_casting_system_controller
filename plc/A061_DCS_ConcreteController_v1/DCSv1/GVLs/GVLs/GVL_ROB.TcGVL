@@ -75,6 +75,9 @@ VAR_GLOBAL
 	
 	ob_CP1_is_run : BOOL;
 	ob_CP1_is_ready : BOOL;
+	ob_CP1_power_on : BOOL;
+	ob_CP1_safety_grid_on : BOOL;
+	ob_CP1_drive_error :BOOL;
 	
 	on_CP1_status_temperature_concrete_fresh : REAL; // [°C]
 	on_CP1_status_temperature_Concrete_pump : REAL; // [°C] 
@@ -99,6 +102,8 @@ VAR_GLOBAL
 	ob_AP1_is_run : BOOL;
 	ob_AP1_is_ready : BOOL;
 	on_AP1_max_flowrate: UINT:=637;			// [ml/min] 
+	ob_AP1_no_error : BOOL;
+	
 	
 	// Admixture pump, Low dosage ViscoTech Pump 
 	ib_SP1_set_run: BOOL;
@@ -118,6 +123,7 @@ VAR_GLOBAL
 	ob_SP1_is_run:BOOL;
 	ob_SP1_is_ready : BOOL;
 	on_SP1_max_flowrate:UINT := 138;		  // [ml/min] 
+	ob_SP1_no_error : BOOL;
 	
 END_VAR]]></Declaration>
   </GVL>

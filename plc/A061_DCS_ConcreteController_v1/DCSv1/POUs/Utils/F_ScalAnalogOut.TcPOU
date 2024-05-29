@@ -3,11 +3,11 @@
   <POU Name="F_ScalAnalogOut" Id="{4418824c-57b9-49f4-89e3-b4ece00bb37f}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION F_ScalAnalogOut : INT
 VAR_INPUT
-	n_Input:INT;
-	n_InMin:INT;
-	n_InMax:INT;
-	n_OutMin:INT;
-	n_OutMax:INT;
+	n_Input:UDINT;
+	n_InMin:UDINT;
+	n_InMax:UDINT;
+	n_OutMin:UDINT;
+	n_OutMax:UDINT;
 
 END_VAR
 VAR
@@ -23,11 +23,11 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//
 // Convert integer to real 
-f_Input:=INT_TO_REAL(n_Input);
-f_InMin:=INT_TO_REAL(n_InMin);
-f_InMax:=INT_TO_REAL(n_InMax);
-f_OutMin:=INT_TO_REAL(n_OutMin);
-f_OutMax:=INT_TO_REAL(n_OutMax);
+f_Input:=UDINT_TO_REAL(n_Input);
+f_InMin:=UDINT_TO_REAL(n_InMin);
+f_InMax:=UDINT_TO_REAL(n_InMax);
+f_OutMin:=UDINT_TO_REAL(n_OutMin);
+f_OutMax:=UDINT_TO_REAL(n_OutMax);
 
 //
 // Check plausibility 

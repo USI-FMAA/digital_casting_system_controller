@@ -121,8 +121,8 @@ END_VAR
 	// Group Input To Robot (mapping from 47 to 76, 16*2Bytes in robotstudio)
 		
 		// data convert 
-		on_MI1_status_speed_motor_1:=REAL_TO_UINT(INT_TO_REAL(GVL_ROB.on_MI1_status_speed_motor_1)/120*65535);
-		on_MI1_status_speed_motor_2:=REAL_TO_UINT(INT_TO_REAL(GVL_ROB.on_MI1_status_speed_motor_2)/120*65535);
+		on_MI1_status_speed_motor_1:=REAL_TO_UINT(INT_TO_REAL(GVL_ROB.on_MI1_status_speed_motor_1));
+		on_MI1_status_speed_motor_2:=REAL_TO_UINT(INT_TO_REAL(GVL_ROB.on_MI1_status_speed_motor_2));
 		
 		on_MI1_status_torque_motor_1:=REAL_TO_UINT(GVL_ROB.on_MI1_status_torque_motor_1*100);
 		on_MI1_status_torque_motor_2:=REAL_TO_UINT(GVL_ROB.on_MI1_status_torque_motor_2*100);
@@ -167,6 +167,10 @@ END_VAR
 		//arr_CP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[2]);
 		arr_CP1_DISlot[0] := GVL_ROB.ob_CP1_is_run;		// #16
 		arr_CP1_DISlot[1] := GVL_ROB.ob_CP1_is_ready;	// #17
+		arr_CP1_DISlot[2] := GVL_ROB.ob_CP1_power_on;	// #18
+		arr_CP1_DISlot[3] := GVL_ROB.ob_CP1_safety_grid_on;
+		arr_CP1_DISlot[4] := GVL_ROB.ob_CP1_drive_error;
+		
 		
 		MEMCPY(ADR(GVL_PN.DI_To_ROB[2]), ADR(arr_CP1_DISlot), SIZEOF(arr_CP1_DISlot));
 
@@ -199,9 +203,11 @@ END_VAR
 		// F_Convert_2Byte_to_Int(GVL_ROB.t_AP1_set_check_duration, arr_GOSlot[90], arr_GOSlot[92]); check with 32 bit
 
 	// Digital input to robot (mapping from 24 to 31 in robotstudio)
-		//arr_AP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[3]);	// #24
-		arr_AP1_DISlot[0] := GVL_ROB.ob_AP1_is_run;
+		//arr_AP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[3]);
+		arr_AP1_DISlot[0] := GVL_ROB.ob_AP1_is_run; //#24
 		arr_AP1_DISlot[1] := GVL_ROB.ob_AP1_is_ready;
+		arr_AP1_DISlot[2] := GVL_ROB.ob_AP1_no_error;
+		
 		
 		MEMCPY(ADR(GVL_PN.DI_To_ROB[3]), ADR(arr_AP1_DISlot), SIZEOF(arr_AP1_DISlot));
 		
@@ -231,6 +237,7 @@ END_VAR
 		//arr_SP1_DISlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DI_To_ROB[4]);
 		arr_SP1_DISlot[0] := GVL_ROB.ob_SP1_is_run; // #32
 		arr_SP1_DISlot[1] := GVL_ROB.ob_SP1_is_ready;
+		arr_SP1_DISlot[2] := GVL_ROB.ob_SP1_no_error;
 		
 		MEMCPY(ADR(GVL_PN.DI_To_ROB[4]), ADR(arr_SP1_DISlot), SIZEOF(arr_SP1_DISlot));
 
@@ -357,6 +364,10 @@ END_VAR
       <LineId Id="460" Count="2" />
       <LineId Id="489" Count="0" />
       <LineId Id="464" Count="19" />
+      <LineId Id="742" Count="0" />
+      <LineId Id="741" Count="0" />
+      <LineId Id="744" Count="0" />
+      <LineId Id="743" Count="0" />
       <LineId Id="493" Count="1" />
       <LineId Id="484" Count="1" />
       <LineId Id="570" Count="0" />
@@ -371,7 +382,10 @@ END_VAR
       <LineId Id="626" Count="2" />
       <LineId Id="630" Count="0" />
       <LineId Id="632" Count="4" />
-      <LineId Id="642" Count="2" />
+      <LineId Id="642" Count="0" />
+      <LineId Id="746" Count="0" />
+      <LineId Id="745" Count="0" />
+      <LineId Id="643" Count="1" />
       <LineId Id="637" Count="1" />
       <LineId Id="614" Count="0" />
       <LineId Id="647" Count="6" />
@@ -382,6 +396,7 @@ END_VAR
       <LineId Id="690" Count="0" />
       <LineId Id="662" Count="4" />
       <LineId Id="693" Count="0" />
+      <LineId Id="748" Count="0" />
       <LineId Id="692" Count="0" />
       <LineId Id="694" Count="0" />
       <LineId Id="667" Count="2" />

@@ -17,9 +17,9 @@ VAR_INPUT
 	b_CP1_Flush_On :BOOL;	
 	b_CP1_Check_On : BOOL;
 	n_CP_Flowrate_mode : BOOL;
-	n_CP1_Operate_Flowrate : INT;
-	n_CP1_Check_Flowrate : INT;	
-	n_CP1_Flush_Flowrate : INT;	
+	n_CP1_Operate_Flowrate : UDINT;
+	n_CP1_Check_Flowrate : UDINT;	
+	n_CP1_Flush_Flowrate : UDINT;	
 	f_dosing_volume:INT;
 	
 	n_CP1_max_speed : INT;  // rpm
@@ -33,9 +33,9 @@ VAR_INPUT
 	
 	n_AP1_Flowrate_mode : BOOL;
 	n_AP1_Max_Flowrate : INT;
-	n_AP1_Operate_Flowrate : INT;
-	n_AP1_Check_Flowrate : INT;
-	n_AP1_Flush_Flowrate : INT;
+	n_AP1_Operate_Flowrate : UDINT;
+	n_AP1_Check_Flowrate : UDINT;
+	n_AP1_Flush_Flowrate : UDINT;
 	n_AP1_Dosing_factor : INT;
 	
 	// Admixture pump (High)
@@ -46,9 +46,9 @@ VAR_INPUT
 	
 	n_SP1_Flowrate_mode : BOOL;
 	n_SP1_Max_Flowrate : INT;
-	n_SP1_Operate_Flowrate : INT;
-	n_SP1_Check_Flowrate : INT;
-	n_SP1_Flush_Flowrate : INT;
+	n_SP1_Operate_Flowrate : UDINT;
+	n_SP1_Check_Flowrate : UDINT;
+	n_SP1_Flush_Flowrate : UDINT;
 	n_SP1_Dosing_factor : INT;
 	
 END_VAR
@@ -59,10 +59,10 @@ VAR
 	_b_Condition_M11 : BOOL;
 	_n_Step_M11 : INT;
 	
-	_n_temp_flowrate_CP1 : INT; 
+	_n_temp_flowrate_CP1 : UDINT; 
 	_n_temp_speed_CP1: INT;
-	_n_temp_speed_AP1 : INT;
-	_n_temp_speed_SP1 : INT;
+	_n_temp_speed_AP1 : UDINT;
+	_n_temp_speed_SP1 : UDINT;
 	
 	_n_temp_speed_MI1 : INT;
 END_VAR
@@ -150,9 +150,9 @@ END_IF
 IF NOT n_CP_Flowrate_mode THEN
 	// set from rpm
 	GVL_IO.on_CP1_Speed:=F_ScalAnalogOut(
-		n_Input:= n_CP1_target_speed,
+		n_Input:= INT_TO_UDINT(n_CP1_target_speed),
 		n_InMin:= 0, 
-		n_InMax:= n_CP1_max_speed, 
+		n_InMax:= INT_TO_UDINT(n_CP1_max_speed), 
 		n_OutMin:= 0, 
 		n_OutMax:= 32767);
 ELSE
@@ -160,7 +160,7 @@ ELSE
 	GVL_IO.on_CP1_Speed:=F_ScalAnalogOut(
 		n_Input:= _n_temp_flowrate_CP1,
 		n_InMin:= 0, 
-		n_InMax:= n_CP1_max_speed*f_dosing_volume, 
+		n_InMax:= INT_TO_UDINT(n_CP1_max_speed*f_dosing_volume), 
 		n_OutMin:= 0, 
 		n_OutMax:= 32767);
 END_IF
@@ -211,7 +211,7 @@ END_IF
 GVL_IO.on_AP1_Speed:=F_ScalAnalogOut(
 	n_Input:= _n_temp_speed_AP1,
 	n_InMin:= 0, 
-	n_InMax:= n_AP1_Max_Flowrate*n_AP1_Dosing_factor, 
+	n_InMax:= INT_TO_UDINT(n_AP1_Max_Flowrate)*n_AP1_Dosing_factor, 
 	n_OutMin:= 0, 
 	n_OutMax:= 32767);
 
@@ -260,7 +260,7 @@ END_IF
 GVL_IO.on_SP1_Speed:=F_ScalAnalogOut(
 	n_Input:= _n_temp_speed_SP1,
 	n_InMin:= 0, 
-	n_InMax:= n_SP1_Max_Flowrate*n_SP1_Dosing_factor, 
+	n_InMax:= INT_TO_UDINT(n_SP1_Max_Flowrate*n_SP1_Dosing_factor), 
 	n_OutMin:= 0, 
 	n_OutMax:= 32767);
 ]]></ST>

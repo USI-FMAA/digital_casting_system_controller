@@ -62,12 +62,16 @@ VAR_GLOBAL
 	b_CP1_Check_On : BOOL; //??
 	b_CP1_is_run : BOOL;
 	b_CP1_is_ready : BOOL;	
+	b_CP1_power_on :BOOL;
+	b_CP1_safety_grid_on : BOOL;
+	b_CP1_drive_error :BOOL;
 	
 	//
 	// Admixture pump 1 (High dosage)
 	b_AP1_Is_Run : BOOL;
 	b_AP1_Check_On : BOOL;
 	b_AP1_is_ready : BOOL;
+	b_AP1_no_error : BOOL;
 	
 	//f_AP1_Override : LREAL; 
 	
@@ -76,6 +80,7 @@ VAR_GLOBAL
 	b_SP1_Is_Run : BOOL;
 	b_SP1_Check_On : BOOL;
 	b_SP1_is_ready : BOOL;
+	b_SP1_no_error : BOOL;
 	
 	//f_SP1_Override :LREAL;
 

@@ -2372,7 +2372,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{C29FE267-D081-4438-A6F8-D544C2CCE89E}" Name="DCSv1" PrjFilePath="DCSv1\DCSv1.plcproj" TmcFilePath="DCSv1\DCSv1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="DCSv1\DCSv1.tmc" TmcHash="{179FBDC3-359C-C374-9E37-C060E929AEF8}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="DCSv1\DCSv1.tmc" TmcHash="{F3B271F3-73F3-9CA9-1913-642F00DB3BD5}">
 					<Name>DCSv1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">

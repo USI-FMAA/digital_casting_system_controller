@@ -2,7 +2,7 @@ version: '3'
 services:
   ros-master:
     image: compasrrc/compas_rrc_driver:v1.1.2
-    container_name: ros-master
+    container_name: ros-master-vc
     environment:
       -  ROS_HOSTNAME=ros-master
       - ROS_MASTER_URI=http://ros-master:11311
@@ -13,7 +13,7 @@ services:
 
   ros-bridge:
     image: compasrrc/compas_rrc_driver:v1.1.2
-    container_name: ros-bridge
+    container_name: ros-bridge-vc
     environment:
       - ROS_HOSTNAME=ros-bridge
       - ROS_MASTER_URI=http://ros-master:11311
@@ -30,7 +30,7 @@ services:
 
   abb-driver:
     image: compasrrc/compas_rrc_driver:v1.1.2
-    container_name: abb-driver
+    container_name: abb-driver-vc
     environment:
       - ROS_HOSTNAME=abb-driver
       - ROS_MASTER_URI=http://ros-master:11311

@@ -126,6 +126,9 @@
     <Compile Include="POUs\Utils\F_Convert_2Byte_to_Uint.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Utils\F_Convert_2Byte_to_Real.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Utils\F_Convert_Bit_to_Byte.TcPOU">
       <SubType>Code</SubType>
     </Compile>
