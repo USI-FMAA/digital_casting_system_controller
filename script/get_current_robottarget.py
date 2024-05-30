@@ -10,12 +10,6 @@ if __name__ == '__main__':
     abb = rrc.AbbClient(ros, '/rob1')
     print('Connected.')
 
-    # Print text on FlexPenant
-    done = abb.send_and_wait(rrc.PrintText('Welcome to COMPAS_RRC'))
-
-    # Print feedback
-    print('Feedback = ', done)
-
     abb.send_and_wait(rrc.SetTool('t_A061_InlineMixer'))
     done = abb.send_and_wait(rrc.PrintText('tool set'))
     print('Tool set = ', done)
@@ -27,13 +21,18 @@ if __name__ == '__main__':
     frame, external_axes = abb.send_and_wait(rrc.GetRobtarget())
     print(frame, external_axes)
 
-    frame.point[0] = 0
+    frame.xaxis = [-1, 0, 0]
+    frame.yaxis = [0, 1, 0]
+    
+    done = abb.send_and_wait(rrc.MoveToRobtarget(frame, external_axes, 100, rrc.Zone.FINE))
 
     # End of Code
     print('Finished')
 
+    frame, external_axes = abb.send_and_wait(rrc.GetRobtarget())
+    print(frame, external_axes)
+
     # Close client
     ros.close()
     ros.terminate()
-    
-    print('disconnected')
+    print('Disconnected')

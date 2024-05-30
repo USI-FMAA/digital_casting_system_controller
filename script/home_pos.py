@@ -21,10 +21,14 @@ if __name__ == '__main__':
     frame, external_axes = abb.send_and_wait(rrc.GetRobtarget())
     print(frame, external_axes)
 
+
+    frame.point[0] -= 5000
+    frame.point[1] += 750
+
     frame.xaxis = [-1, 0, 0]
     frame.yaxis = [0, 1, 0]
     
-    done = abb.send_and_wait(rrc.MoveToRobtarget(frame, external_axes, 1000, rrc.Zone.FINE))
+    done = abb.send_and_wait(rrc.MoveToRobtarget(frame, external_axes, 100, rrc.Zone.FINE))
 
     # End of Code
     print('Finished')

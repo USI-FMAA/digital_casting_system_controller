@@ -9,13 +9,11 @@ The main package is [Digital Casting System](https://github.com/USI-FMAA/digital
 
 ## **Requirements**
 
-- [Windows 10]() or [Debian 12]()
-- [TwinCAT](https://www.beckhoff.com/en-en/products/automation/twincat/?pk_campaign=AdWords-AdWordsSearch-TwinCAT_EN&pk_\
-kwd=twincat&gclid=Cj0KCQjw9ZGYBhCEARIsAEUXITW5dmPmQ2629HIuFY7wfbSR70pi5uY2lkYziNmfKYczm1_YsK4hhPsaApjyEALw_wcB)
+- [Windows 10]()
+- [TwinCAT](https://www.beckhoff.com/en-en/products/automation/twincat/?pk_campaign=AdWords-AdWordsSearch-TwinCAT_EN&pk_
+  kwd=twincat&gclid=Cj0KCQjw9ZGYBhCEARIsAEUXITW5dmPmQ2629HIuFY7wfbSR70pi5uY2lkYziNmfKYczm1_YsK4hhPsaApjyEALw_wcB)
 - [ABB RobotStudio]()
 - [Docker](26.0.0)
-
-
 
 ## **Package Information**
 
@@ -26,7 +24,29 @@ graph TD
     B --> C[ABB Robot]
     B --> D[Beckhoff PLC]
 ```
-#### Main control flow
+
+## **Usage**
+
+```bash
+# Virtual controller (simulation)
+# clean the stopped container
+docker container prune
+# compose up and connect with docker container
+docker-compose -f .\robot\docker_compas_rrc\virtual_controller\docker-compose.yml up
+
+python .\script\welcome_dcs.py
+
+
+# Real controller (real robot)
+# clean the stopped container
+docker container prune
+# compose up and connect with docker container
+docker-compose -f .\robot\docker_compas_rrc\real_controller\docker-compose.yml up
+
+python .\script\welcome_dcs.py
+```
+
+<!-- #### Main control flow
 
 ```mermaid
 
@@ -72,6 +92,7 @@ graph TD
 ```
 
 Concrete Pump
+
 ```mermaid
 %%{ init: { 'flowchart': { 'curve': 'stepBefore' } } }%%
 graph TD
@@ -94,18 +115,10 @@ graph TD
     H --- O[Pressure_Funnel_Inlet]
     H --- P[Temperature_M1]
     H --- Q[Temperature_M2]
-```
-
-
-
-
-
-
-
-
-## **Usage**
+``` -->
 
 ## Credits
+
 This package was created by [WeiTing Chen](https://github.com/WeiTing1991)
 at [USI-FMAA](https://github.com/USI-FMAA) and [ETHZurich DFab](https://dfab.ch/).
 

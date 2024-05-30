@@ -2,6 +2,9 @@ import compas_rrc as rrc
 
 if __name__ == '__main__':
 
+    """
+    This script is to move robot to a rev counter position and get the joints values.
+    """
     # Create Ros Client
     ros = rrc.RosClient()
     ros.run()
