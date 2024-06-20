@@ -176,8 +176,8 @@ END_VAR
 
 	// Group Input To Robot (mapping from 77 to 91, 8*2Bytes in robotstudio)
 		on_CP1_status_temperature_concrete_fresh := REAL_TO_UINT(GVL_ROB.on_CP1_status_temperature_concrete_fresh);
-		on_CP1_status_temperature_Concrete_pump := REAL_TO_UINT(GVL_ROB.on_CP1_status_temperature_Concrete_pump);
-		on_CP1_status_pressure_Concrete_pump := REAL_TO_UINT(GVL_ROB.on_CP1_status_pressure_Concrete_pump*100);
+		on_CP1_status_temperature_Concrete_pump := REAL_TO_UINT(GVL_ROB.on_CP1_status_temperature_concrete_pump);
+		on_CP1_status_pressure_Concrete_pump := REAL_TO_UINT(GVL_ROB.on_CP1_status_pressure_concrete_pump*100);
 
 		F_Convert_Uint_to_2Byte(on_CP1_status_temperature_concrete_fresh, arr_GISlot[77], arr_GISlot[78]); // [°C] #624-639
 		F_Convert_Uint_to_2Byte(on_CP1_status_temperature_Concrete_pump, arr_GISlot[79], arr_GISlot[80]); // [°C]
@@ -199,7 +199,7 @@ END_VAR
 		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_set_check_flowrate, arr_GOSlot[82], arr_GOSlot[83]);
 		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_material_density, arr_GOSlot[84], arr_GOSlot[85]);
 		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_material_mass, arr_GOSlot[86], arr_GOSlot[87]);
-		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_flush_flowrate, arr_GOSlot[88], arr_GOSlot[89]);
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_AP1_set_flush_flowrate, arr_GOSlot[88], arr_GOSlot[89]);
 		// F_Convert_2Byte_to_Int(GVL_ROB.t_AP1_set_check_duration, arr_GOSlot[90], arr_GOSlot[92]); check with 32 bit
 
 	// Digital input to robot (mapping from 24 to 31 in robotstudio)

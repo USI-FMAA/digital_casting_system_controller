@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.32">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.5">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000000000035}" TcBaseType="true" HideType="true">UINTARR2</Name>
@@ -499,7 +499,7 @@ Drive Status 4 (manually linked):
 			</Format>
 		</DataType>
 		<DataType>
-			<Name GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC" TcBaseType="true">PLCTONC_AXIS_REF</Name>
+			<Name GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC" TcBaseType="true">PLCTONC_AXIS_REF_OLD</Name>
 			<BitSize>1024</BitSize>
 			<SubItem>
 				<Name>ControlDWord</Name>
@@ -1512,13 +1512,13 @@ External Setpoint Generation:
 			<Name GUID="{F7B9FC50-054E-4547-B468-83A9E72D8064}" Namespace="MC" TcBaseType="true" HideType="true">NCTOPLC_AXIS_REF_STATE3_FLAGS</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
-				<Name>TouchProbe1InputState </Name>
+				<Name>TouchProbe1InputState</Name>
 				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
 				<BitSize>1</BitSize>
 				<BitOffs>0</BitOffs>
 			</SubItem>
 			<SubItem>
-				<Name>TouchProbe2InputState </Name>
+				<Name>TouchProbe2InputState</Name>
 				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
 				<BitSize>1</BitSize>
 				<BitOffs>1</BitOffs>
@@ -1559,7 +1559,7 @@ External Setpoint Generation:
 			</Format>
 		</DataType>
 		<DataType>
-			<Name GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC" TcBaseType="true">NCTOPLC_AXIS_REF</Name>
+			<Name GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC" TcBaseType="true">NCTOPLC_AXIS_REF</Name>
 			<BitSize>2048</BitSize>
 			<SubItem>
 				<Name>StateDWord</Name>
@@ -1841,6 +1841,12 @@ External Setpoint Generation:
 				<BitSize>32</BitSize>
 				<BitOffs>1920</BitOffs>
 			</SubItem>
+			<SubItem>
+				<Name>UserData</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>1984</BitOffs>
+			</SubItem>
 			<Properties>
 				<Property>
 					<Name>NcStructType</Name>
@@ -1875,6 +1881,9 @@ External Setpoint Generation:
 				<Relation Priority="100">
 					<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}"></Type>
 				</Relation>
+				<Relation Priority="100">
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}"></Type>
+				</Relation>
 			</Relations>
 		</DataType>
 		<DataType>
@@ -1894,6 +1903,138 @@ External Setpoint Generation:
 				<LBound>32</LBound>
 				<Elements>224</Elements>
 			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC" TcBaseType="true">PLCTONC_AXIS_REF</Name>
+			<BitSize>1024</BitSize>
+			<SubItem>
+				<Name>ControlDWord</Name>
+				<Type GUID="{875D2B22-B7EB-497E-B933-0C004593CCF3}" Namespace="MC">PLCTONC_AXIS_REF_CTRL</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Override</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>AxisModeRequest</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>AxisModeDWord</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>AxisModeLReal</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>128</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>PositionCorrection</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>192</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ExtSetPos</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>256</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ExtSetVelo</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>320</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ExtSetAcc</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>384</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ExtSetDirection</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<BitSize>32</BitSize>
+				<BitOffs>448</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ExtControllerOutput</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>512</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>GearRatio1</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>576</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>GearRatio2</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>640</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>GearRatio3</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>704</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>GearRatio4</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>768</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>MapState</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>832</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>PlcCycleControl</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>840</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>PlcCycleCount</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>848</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ExtTorque</Name>
+				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
+				<BitSize>64</BitSize>
+				<BitOffs>896</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>NcStructType</Name>
+					<Value>1</Value>
+				</Property>
+			</Properties>
+			<Relations>
+				<Relation Priority="100">
+					<Type GUID="{60392271-8688-4F4C-B404-618DF106325D}"></Type>
+				</Relation>
+				<Relation Priority="100">
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}"></Type>
+				</Relation>
+			</Relations>
 		</DataType>
 		<DataType>
 			<Name GUID="{B9530055-DFDC-1952-C0D6-D7E7929B5194}" AutoDeleteType="true">arr8Bit</Name>
@@ -1920,7 +2061,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -1929,7 +2070,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
 			<BitSize>6</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -1938,7 +2079,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
 			<BitSize>7</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -1947,7 +2088,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
 			<BitSize>5</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -2215,7 +2356,7 @@ External Setpoint Generation:
 						<Name>Inputs</Name>
 						<Var>
 							<Name>FromPlc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF_OLD</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" InsertType="1">
@@ -2357,7 +2498,7 @@ External Setpoint Generation:
 						<Name>Inputs</Name>
 						<Var>
 							<Name>FromPlc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF_OLD</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" InsertType="1">
@@ -2372,33 +2513,184 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{C29FE267-D081-4438-A6F8-D544C2CCE89E}" Name="DCSv1" PrjFilePath="DCSv1\DCSv1.plcproj" TmcFilePath="DCSv1\DCSv1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="DCSv1\DCSv1.tmc" TmcHash="{F3B271F3-73F3-9CA9-1913-642F00DB3BD5}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{DE633A50-28DB-4EFC-2346-ADBB2A96A19C}" TmcPath="DCSv1\DCSv1.tmc">
 					<Name>DCSv1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
-					<Vars VarGrpType="1">
-						<Name>ComTask Inputs</Name>
+					<Vars VarGrpType="2" ContextId="1" AreaNo="17">
+						<Name>PlcTask Outputs</Name>
 						<Var>
-							<Name>GVL.stIn_EL6001</Name>
-							<Comment><![CDATA[Hardware RS-232]]></Comment>
-							<Type GUID="{0146173C-D895-D219-E209-CC005AC77636}" Namespace="Tc2_SerialCom">EL6inData22B</Type>
+							<Name>GVL.Axis_Mixer1.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
-					</Vars>
-					<Vars VarGrpType="2" AreaNo="1">
-						<Name>ComTask Outputs</Name>
 						<Var>
-							<Name>GVL.stOut_EL6001</Name>
-							<Type GUID="{D6B0A42D-897A-4B90-95E8-3C741C3CE3EE}" Namespace="Tc2_SerialCom">EL6outData22B</Type>
+							<Name>GVL.Axis_Mixer2.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bResetSafety</Name>
+							<Comment><![CDATA[Hardware Output]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bDosingPumpDosingHighLow</Name>
+							<Comment><![CDATA[ bConcretePumpOn					AT %Q*	: BOOL;
+ bConcretePumpOff					AT %Q*	: BOOL;
+ bConcretePumpForwardOn			AT %Q*	: BOOL;
+ bConcretePumpBackwardOn			AT %Q*	: BOOL;]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bDosingPumpNoFastStop</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bDosingPumpDosingAmount</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bOutputSpare1</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bOutputSpare2</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bOutputSpare3</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bOutputSpare4</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bOutputSpare5</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bOutputSpare6</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bOutputSpare7</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bOutputSpare8</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nDosingPumpSpeed</Name>
+							<Comment><![CDATA[ nConcretePumpSpeed				AT %Q*	: INT;]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nOutputSpare1</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nOutputSpare2</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_CC1_Safety_Reset</Name>
+							<Comment><![CDATA[ Hardware Outputs
+
+ Concrete Controller 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_CP1_Start</Name>
+							<Comment><![CDATA[ Concrete Pump 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_CP1_Stop</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_CP1_Forward</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_CP1_Backward</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_AP1_Power_On</Name>
+							<Comment><![CDATA[ Admixture Pump 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.on_CP1_Speed</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_AP1_Start</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_AP1_Pressure_Ok</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_AP1_Not_Empty</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_AP1_Pulse</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.on_AP1_Speed</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_SP1_Power_On</Name>
+							<Comment><![CDATA[ 
+ Sup-Admixture Pump 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_SP1_Start</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_SP1_Pressure_Ok</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_SP1_Not_Empty</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ob_SP1_Pulse</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.on_SP1_Speed</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_PN.DI_To_ROB</Name>
+							<Comment><![CDATA[ Digital Input to robot (1 bit)]]></Comment>
+							<Type GUID="{A346EB82-376A-EDEA-5504-C523FB10A19E}">ARRAY [0..31] OF arr8Bit</Type>
+						</Var>
+						<Var>
+							<Name>GVL_PN.GI_To_ROB</Name>
+							<Comment><![CDATA[ Group Input to robot (16 bit or 32 bit)]]></Comment>
+							<Type GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}">ARRAY [32..255] OF BYTE</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
 						<Name>PlcTask Inputs</Name>
 						<Var>
 							<Name>GVL.Axis_Mixer1.NcToPlc</Name>
-							<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
 							<Name>GVL.Axis_Mixer2.NcToPlc</Name>
-							<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 						<Var>
 							<Name>GVL.bSafetyIO</Name>
@@ -2619,170 +2911,19 @@ External Setpoint Generation:
 							<Type GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}">ARRAY [32..255] OF BYTE</Type>
 						</Var>
 					</Vars>
-					<Vars VarGrpType="2" ContextId="1" AreaNo="17">
-						<Name>PlcTask Outputs</Name>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>ComTask Outputs</Name>
 						<Var>
-							<Name>GVL.Axis_Mixer1.PlcToNc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+							<Name>GVL.stOut_EL6001</Name>
+							<Type GUID="{D6B0A42D-897A-4B90-95E8-3C741C3CE3EE}" Namespace="Tc2_SerialCom">EL6outData22B</Type>
 						</Var>
+					</Vars>
+					<Vars VarGrpType="1">
+						<Name>ComTask Inputs</Name>
 						<Var>
-							<Name>GVL.Axis_Mixer2.PlcToNc</Name>
-							<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bResetSafety</Name>
-							<Comment><![CDATA[Hardware Output]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bDosingPumpDosingHighLow</Name>
-							<Comment><![CDATA[ bConcretePumpOn					AT %Q*	: BOOL;
- bConcretePumpOff					AT %Q*	: BOOL;
- bConcretePumpForwardOn			AT %Q*	: BOOL;
- bConcretePumpBackwardOn			AT %Q*	: BOOL;]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bDosingPumpNoFastStop</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bDosingPumpDosingAmount</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bOutputSpare1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bOutputSpare2</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bOutputSpare3</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bOutputSpare4</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bOutputSpare5</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bOutputSpare6</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bOutputSpare7</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bOutputSpare8</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nDosingPumpSpeed</Name>
-							<Comment><![CDATA[ nConcretePumpSpeed				AT %Q*	: INT;]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nOutputSpare1</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nOutputSpare2</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_CC1_Safety_Reset</Name>
-							<Comment><![CDATA[ Hardware Outputs
-
- Concrete Controller 1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_CP1_Start</Name>
-							<Comment><![CDATA[ Concrete Pump 1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_CP1_Stop</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_CP1_Forward</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_CP1_Backward</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_AP1_Power_On</Name>
-							<Comment><![CDATA[ Admixture Pump 1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.on_CP1_Speed</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_AP1_Start</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_AP1_Pressure_Ok</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_AP1_Not_Empty</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_AP1_Pulse</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.on_AP1_Speed</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_SP1_Power_On</Name>
-							<Comment><![CDATA[ 
- Sup-Admixture Pump 1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_SP1_Start</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_SP1_Pressure_Ok</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_SP1_Not_Empty</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ob_SP1_Pulse</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.on_SP1_Speed</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_PN.DI_To_ROB</Name>
-							<Comment><![CDATA[ Digital Input to robot (1 bit)]]></Comment>
-							<Type GUID="{A346EB82-376A-EDEA-5504-C523FB10A19E}">ARRAY [0..31] OF arr8Bit</Type>
-						</Var>
-						<Var>
-							<Name>GVL_PN.GI_To_ROB</Name>
-							<Comment><![CDATA[ Group Input to robot (16 bit or 32 bit)]]></Comment>
-							<Type GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}">ARRAY [32..255] OF BYTE</Type>
+							<Name>GVL.stIn_EL6001</Name>
+							<Comment><![CDATA[Hardware RS-232]]></Comment>
+							<Type GUID="{0146173C-D895-D219-E209-CC005AC77636}" Namespace="Tc2_SerialCom">EL6inData22B</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2021-01-27T08:08:38">
@@ -2852,7 +2993,6 @@ External Setpoint Generation:
 							<OwnerB Name="TIID^Device 1 (EL6631-0010)^robotbasicio">
 								<Link VarA="GVL_PN.AO_From_ROB" TypeA="WORD" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000004}" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 1" Size="8" RestoreInfo="ANotFound"/>
 								<Link VarA="GVL_PN.AO_From_ROB" TypeA="WORD" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000004}" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 2" Size="8" OffsA="8" RestoreInfo="ANotFound"/>
-								<Link VarA="GVL_PN.DO_From_ROB" TypeA="BYTE" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000001}" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 0" RestoreInfo="TypeMismatch" OldTypeA="BYTE" OldGuidA="{18071995-0000-0000-0000-000000000001}" NewTypeA="ARRAY [0..31] OF BYTE" NewGuidA="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}"/>
 							</OwnerB>
 							<OwnerB Name="TIID^Device 4 (EtherCAT)^Drive 11 (AX5206-0000-0213)">
 								<Link VarA="GVL.in_MID1_ActAbsCurrent" TypeA="INT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000006}" VarB="AT 1^Actual absolute current" RestoreInfo="ANotFound"/>
@@ -2870,7 +3010,7 @@ External Setpoint Generation:
 					</UnrestoredVarLinks>
 					<Contexts>
 						<Context>
-							<Id NeedCalleeCall="true">0</Id>
+							<Id>0</Id>
 							<Name>ComTask</Name>
 							<ManualConfig>
 								<OTCID>#x02010060</OTCID>
@@ -2879,7 +3019,7 @@ External Setpoint Generation:
 							<CycleTime>8000000</CycleTime>
 						</Context>
 						<Context>
-							<Id NeedCalleeCall="true">1</Id>
+							<Id>1</Id>
 							<Name>PlcTask</Name>
 							<ManualConfig>
 								<OTCID>#x02010050</OTCID>
@@ -3495,7 +3635,7 @@ External Setpoint Generation:
 							<BootStrapData>0010f400f410f400</BootStrapData>
 							<DcMode>53796e6368726f6e00000000000000004672656552756e2f534d2d53796e6368726f6e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e0000000000000000000000000000000000000000000000000000000000204e0000000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
-							<DcMode>4443494e00000000000000000000000044432d53796e6368726f6e2028696e70757420626173656429000000000000000000000000000000a0860100000000070100000000000000000001000000000000000000000000000000000000000000</DcMode>
+							<DcMode>4443494e00000000000000000000000044432d53796e6368726f6e2028696e70757420626173650000000000000000000000000000000000a0860100000000070100000000000000000001000000000000000000000000000000000000000000</DcMode>
 							<Pdo Name="AI Standard Channel 1" Index="#x1a00" Flags="#x0010" SyncMan="3">
 								<ExcludePdo>#x1a01</ExcludePdo>
 								<Entry Name="Status__Underrange" Index="#x6000" Sub="#x01">
@@ -7161,7 +7301,12 @@ External Setpoint Generation:
 			</Device>
 			<Device Id="1" DevType="118" AmsPort="28673" AmsNetId="5.57.158.168.2.1" RemoteName="Device 1 (EL6631-0010)">
 				<Name>Device 1 (EL6631-0010)</Name>
-				<DevData>000000000f00000000000000a08601005465726d2031352028454c363633312d3030313029000000000000000000000000000000000000000000000000000000000000000000010000000000000000000001057adaff040000000000000000000000000000000000000000000000000000000000000000000000000000000000</DevData>
+				<AddressInfo>
+					<Ecat>
+						<EtherCATDeviceId>15</EtherCATDeviceId>
+						<EtherCATDeviceName>TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 15 (EL6631-0010)</EtherCATDeviceName>
+					</Ecat>
+				</AddressInfo>
 				<Image Id="7" AddrType="4" ImageType="3" SizeIn="260" SizeOut="260">
 					<Name>Image</Name>
 				</Image>
@@ -10423,6 +10568,7 @@ Submodule Info: DO 256 bytes
 		</OwnerA>
 		<OwnerA Name="TIPC^DCSv1^DCSv1 Instance">
 			<OwnerB Name="TIID^Device 1 (EL6631-0010)^robotbasicio">
+				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 0"/>
 				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[0]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 0"/>
 				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[1]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 1"/>
 				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[2]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 2"/>

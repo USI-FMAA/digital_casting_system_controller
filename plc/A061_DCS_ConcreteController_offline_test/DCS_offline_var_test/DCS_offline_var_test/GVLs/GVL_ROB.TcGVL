@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <GVL Name="GVL_ROB" Id="{4e6aaf52-5faa-4d3c-95d5-15091f54db1f}">
+  <GVL Name="GVL_ROB" Id="{206da881-db4d-4524-ab36-e937af7e71ad}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 // ***********************************************************************************
 //
@@ -15,7 +15,7 @@
 // EMAIL       :  chenw@usi.ch
 // Copyright   :  USI Mendrisio; ETH Zürich; Müller-steinag Gruppe (CH) 2023
 //
-// **************S*********************************************************************
+// ************************************************************************************
 
 VAR_GLOBAL
 	//output to robot digital input (DI) ; input from robot digital output(DO)
@@ -126,7 +126,6 @@ VAR_GLOBAL
 	ob_SP1_is_ready : BOOL;
 	ob_SP1_no_error : BOOL;
 	on_SP1_max_flowrate:UINT := 138;		  // [ml/min] 
-	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

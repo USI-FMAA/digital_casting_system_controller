@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <GVL Name="GVL_RESD" Id="{b609842c-d25b-424b-a488-5296437ef3c4}">
+  <GVL Name="GVL_RESD" Id="{01e8f160-40b8-44ad-be5f-7561a26d04c0}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 // ***********************************************************************************
 //
