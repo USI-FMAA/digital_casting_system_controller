@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.6">
   <GVL Name="GVL_ROB" Id="{4e6aaf52-5faa-4d3c-95d5-15091f54db1f}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 // ***********************************************************************************
@@ -28,6 +28,7 @@ VAR_GLOBAL
 	
 	ib_CC1_enable : BOOL;
 	ib_CC1_reset : BOOL;
+	ib_CC1_data_recording : BOOL;
 	
 	ob_mode_manual : BOOL;
 	ob_mode_laptop : BOOL; 	
@@ -37,8 +38,8 @@ VAR_GLOBAL
 	
 	//Inline Mixer (MI1)  				
 	ib_MI1_set_run : BOOL;
-	ib_Ml1_enable : BOOL;
-	ib_MI1_set_rest : BOOL;				 
+	ib_MI1_enable : BOOL;
+	ib_MI1_set_reset : BOOL;				 
 	in_MI1_set_speed : UINT;								// [0 rpm to 120 rpm]
 	ib_MI1_set_curved_speed_mode_on : BOOL;
 	
@@ -105,7 +106,7 @@ VAR_GLOBAL
 	ob_AP1_is_ready : BOOL;
 
 	ob_AP1_no_error : BOOL;
-	on_AP1_max_flowrate: UINT:=637;			// [ml/min] 	
+	on_AP1_max_flowrate: UINT:=606;			// [ml/min] cailbrated 240710
 	
 	// Admixture pump, Low dosage ViscoTech Pump 
 	ib_SP1_power_on: BOOL;
@@ -120,12 +121,12 @@ VAR_GLOBAL
 	in_SP1_material_mass: UINT;        // [g]
 	
 	ib_SP1_flush_on: BOOL;			 
-	in_SP1_flush_flowrate: UINT;	  // [ml/min] 
+	in_SP1_flush_flowrate: UINT;		// [ml/min] 
 	
 	ob_SP1_is_run:BOOL;
 	ob_SP1_is_ready : BOOL;
 	ob_SP1_no_error : BOOL;
-	on_SP1_max_flowrate:UINT := 138;		  // [ml/min] 
+	on_SP1_max_flowrate:UINT := 148;	 // [ml/min] cailbrated 240710
 	
 END_VAR]]></Declaration>
   </GVL>

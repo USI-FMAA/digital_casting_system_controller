@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.6">
   <POU Name="P_Robot_Operate" Id="{58930efb-01e5-4003-bd7a-2dbe09f4be91}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_Robot_Operate
 VAR
@@ -106,7 +106,7 @@ _t_SP1_Check_Duration := INT_TO_TIME(GVL_RESD.n_Sup_Admixture_Pump_Check_Duratio
 fb_SetOutputDataToIO(		
 	// Mixer 
 	b_MI1_set_run := GVL_ROB.ib_MI1_set_run,
-	b_Ml1_Enable := GVL_ROB.ib_Ml1_enable,
+	b_Ml1_Enable := GVL_ROB.ib_MI1_enable,
 	b_MI1_Curved_Speed_On := GVL_ROB.ib_MI1_set_curved_speed_mode_on,
 	f_MI1_Override_Speed := UINT_TO_REAL(GVL_ROB.in_MI1_set_speed),
 	

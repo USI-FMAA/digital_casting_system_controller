@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.6">
   <POU Name="P_PNDataConvert" Id="{f7d26543-681d-42ee-b4b0-773d93a30fbb}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM P_PNDataConvert
 VAR
@@ -78,7 +78,7 @@ END_VAR
 		arr_CC1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[0]);
 		GVL_ROB.ib_CC1_enable := arr_CC1_DOSlot[0]; // #0
 		GVL_ROB.ib_CC1_reset := arr_CC1_DOSlot[1]; // #1
-
+		GVL_ROB.ib_CC1_data_recording := arr_CC1_DOSlot[2]; // #2
 		
 	// Group output from Robot ( mapping from 32 to 46, 8*2Bytes in robotstudio)
 		F_Convert_2Byte_to_Int(GVL_ROB.in_spare, arr_GOSlot[32], arr_GOSlot[33]); // #256 to 271
@@ -101,7 +101,7 @@ END_VAR
 	// Digital output from robot ( mapping from 8 to 15 in robotstudio)
 		arr_MI1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[1]);
 		GVL_ROB.ib_MI1_set_run := arr_MI1_DOSlot[0]; // [0 rpm to 120 rpm]
-		GVL_ROB.ib_Ml1_enable := arr_MI1_DOSlot[1];
+		GVL_ROB.ib_MI1_enable := arr_MI1_DOSlot[1];
 		GVL_ROB.ib_MI1_set_curved_speed_mode_on := arr_MI1_DOSlot[2];
 
 	// Group output from Robot ( mapping from 47 to 61, 8*2Bytes in robotstudio)

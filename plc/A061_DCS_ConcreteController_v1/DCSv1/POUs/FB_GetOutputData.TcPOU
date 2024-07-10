@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.6">
   <POU Name="FB_GetOutputData" Id="{3594ad90-3508-4d18-a5d5-1b7dd77fecad}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_GetOutputData
 VAR_INPUT
@@ -124,12 +124,8 @@ END_IF
 
 //Pressure TODO
 //f_CP1_status_pressure_Concrete_pump := F_DecimalData(GVL_RESD.f_CP1_status_pressure_Concrete_pump, 3, TRUE),	
-f_MI1_status_Pressure_funnel_inlet := F_Mapping(
-													f_Input:= GVL_IO.in_Pressure_Funnel,
-													f_InMin:= 0, 
-													f_InMax:= 32767, 
-													f_OutMin:= 0, 
-													f_OutMax:= 40);
+f_MI1_status_Pressure_funnel_inlet := (INT_TO_REAL(GVL_IO.in_Pressure_Funnel)/32767)*40;
+
 
 ////Concrete Pump 	
 //Status
@@ -161,13 +157,11 @@ ELSE
 END_IF
 
 //Pressure
-f_CP1_status_pressure_Concrete_pump:= F_Mapping(
-													f_Input:= GVL_IO.in_Pressure_Pump,
-													f_InMin:= 0, 
-													f_InMax:= 32767, 
-													f_OutMin:= 0, 
-													f_OutMax:= 40);
-													
+
+f_CP1_status_pressure_Concrete_pump:= (INT_TO_REAL(GVL_IO.in_Pressure_Pump)/32767)*40;
+
+
+
 ////AP1
 //Status
 b_AP1_is_run := GVL.b_AP1_Is_Run;
@@ -204,7 +198,9 @@ b_SP1_no_error := GVL.b_SP1_no_error;
 	]]></ST>
     </Implementation>
     <LineIds Name="FB_GetOutputData">
-      <LineId Id="56" Count="75" />
+      <LineId Id="56" Count="67" />
+      <LineId Id="324" Count="0" />
+      <LineId Id="129" Count="2" />
       <LineId Id="224" Count="0" />
       <LineId Id="132" Count="0" />
       <LineId Id="225" Count="0" />
@@ -215,7 +211,10 @@ b_SP1_no_error := GVL.b_SP1_no_error;
       <LineId Id="289" Count="1" />
       <LineId Id="283" Count="0" />
       <LineId Id="292" Count="2" />
-      <LineId Id="135" Count="21" />
+      <LineId Id="135" Count="11" />
+      <LineId Id="152" Count="1" />
+      <LineId Id="313" Count="2" />
+      <LineId Id="154" Count="2" />
       <LineId Id="310" Count="0" />
       <LineId Id="157" Count="0" />
       <LineId Id="302" Count="0" />
