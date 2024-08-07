@@ -143,14 +143,14 @@ fb_SetOutputDataToIO(
 	b_SP1_Power_On := GVL_ROB.ib_SP1_power_on,
 	b_SP1_Run := GVL_ROB.ib_SP1_set_run,
 	b_SP1_Flush_On := GVL_ROB.ib_SP1_flush_on,
-	b_SP1_Check_On := GVL_ROB.ib_SP1_set_check_on,
+	b_SP1_Check_On := GVL_ROB.ib_SP1_check_on,
 	
 	n_SP1_Flowrate_mode := TRUE,
 	n_SP1_Max_Flowrate := UINT_TO_INT(GVL_ROB.on_SP1_max_flowrate),
 	n_SP1_Operate_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_SP1_set_flowrate*10))),
 	n_SP1_Check_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_SP1_set_check_flowrate*10))),
-	n_SP1_Flush_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_SP1_flush_flowrate*10))),
-	n_SP1_Dosing_factor := UINT_TO_INT(GVL_ROB.in_SP1_dosing_factor),
+	n_SP1_Flush_Flowrate := REAL_TO_UDINT((UINT_TO_REAL(GVL_ROB.in_SP1_set_flush_flowrate*10))),
+	n_SP1_Dosing_factor := UINT_TO_INT(GVL_ROB.in_SP1_set_dosing_factor),
 	);
 
 //***********************************************************************************

@@ -218,18 +218,18 @@ END_VAR
 	// Digital output from robot (mapping from 32 to 39 in robotstudio )
 		arr_SP1_DOSlot := F_CONVERT_BYTE_TO_BIT(GVL_PN.DO_From_ROB[4]);
 		GVL_ROB.ib_SP1_set_run := arr_SP1_DOSlot[0]; // #32
-		GVL_ROB.ib_SP1_set_check_on := arr_SP1_DOSlot[1];
+		GVL_ROB.ib_SP1_check_on := arr_SP1_DOSlot[1];
 		GVL_ROB.ib_SP1_flush_on := arr_SP1_DOSlot[2];
 		GVL_ROB.ib_SP1_power_on := arr_SP1_DOSlot[3];
 
 	// Group output from Robot ( mapping from 92 to 106, 8*2Bytes in robotstudio)
 		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_set_flowrate, arr_GOSlot[94], arr_GOSlot[95]); // **** [ml/min] #92
-		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_dosing_factor, arr_GOSlot[96], arr_GOSlot[97]);
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_set_dosing_factor, arr_GOSlot[96], arr_GOSlot[97]);
 		
 		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_set_check_flowrate, arr_GOSlot[98], arr_GOSlot[99]);
 		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_material_density, arr_GOSlot[100], arr_GOSlot[101]);
 		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_material_mass, arr_GOSlot[102], arr_GOSlot[103]);
-		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_flush_flowrate, arr_GOSlot[104], arr_GOSlot[105]);
+		F_Convert_2Byte_to_Uint(GVL_ROB.in_SP1_set_flush_flowrate, arr_GOSlot[104], arr_GOSlot[105]);
 		
 		// F_Convert_2Byte_to_Int(GVL_ROB.t_SP1_Check_Duration, arr_GOSlot[106], arr_GOSlot[107]); // Check with 32 bit
 

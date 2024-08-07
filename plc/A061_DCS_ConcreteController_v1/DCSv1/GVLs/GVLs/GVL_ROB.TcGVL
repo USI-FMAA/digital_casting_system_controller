@@ -112,16 +112,16 @@ VAR_GLOBAL
 	ib_SP1_power_on: BOOL;
 	ib_SP1_set_run: BOOL;
 	in_SP1_set_flowrate: UINT;         // [ml/min]
-	in_SP1_dosing_factor:UINT;       
+	in_SP1_set_dosing_factor:UINT;       
 	
-	ib_SP1_set_check_on: BOOL;			 
+	ib_SP1_check_on: BOOL;			 
 	in_SP1_set_check_flowrate: UINT;	  // [ml/min] 
-	t_SP1_Check_Duration: TIME ;       // T#1d2h30m40s500ms
+	t_SP1_set_check_duration: TIME ;       // T#1d2h30m40s500ms
 	in_SP1_material_density: UINT;     // [g/ml]
 	in_SP1_material_mass: UINT;        // [g]
 	
 	ib_SP1_flush_on: BOOL;			 
-	in_SP1_flush_flowrate: UINT;		// [ml/min] 
+	in_SP1_set_flush_flowrate: UINT;		// [ml/min] 
 	
 	ob_SP1_is_run:BOOL;
 	ob_SP1_is_ready : BOOL;
