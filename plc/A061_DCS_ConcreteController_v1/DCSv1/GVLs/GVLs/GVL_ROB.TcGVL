@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.6">
   <GVL Name="GVL_ROB" Id="{4e6aaf52-5faa-4d3c-95d5-15091f54db1f}">
-    <Declaration><![CDATA[{attribute 'qualified_only'}
+    <Declaration><![CDATA[ {attribute 'qualified_only'}
 // ***********************************************************************************
 //
 // Müller-steinag Gruppe, Kandergrien Einigen, CH-3646 Bern

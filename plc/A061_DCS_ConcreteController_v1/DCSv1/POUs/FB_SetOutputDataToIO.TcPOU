@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.6">
   <POU Name="FB_SetOutputDataToIO" Id="{1d97a739-2a9b-4bf8-8fc4-6215cf7509a3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SetOutputDataToIO
 VAR_INPUT
@@ -92,6 +92,8 @@ END_VAR
 IF b_MI1_Curved_Speed_On THEN
 		// run curved Speed mode
 		P_MI1_Curved_Speed();
+		P_MI1_Curved_Speed.b_set_run := b_MI1_set_run;
+		P_MI1_Curved_Speed.b_check_mode_on:= b_MI1_Curved_Speed_On;
 		_n_temp_speed_MI1:=F_ScalAnalogOut(
 			n_Input:= REAL_TO_INT(P_MI1_Curved_Speed.f_MI1_speed),
 			n_InMin:= 0, 
@@ -266,7 +268,9 @@ GVL_IO.on_SP1_Speed:=F_ScalAnalogOut(
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_SetOutputDataToIO">
-      <LineId Id="72" Count="194" />
+      <LineId Id="72" Count="23" />
+      <LineId Id="267" Count="1" />
+      <LineId Id="96" Count="170" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>
