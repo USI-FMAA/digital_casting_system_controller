@@ -26,7 +26,7 @@ This repository is the submoudle of [Digital Casting System] for PLC controller 
 Install TwinCAT 3.4 and open the project in `plc\A061_DCS_ConcreteController_v1` folder.
 Detailed setup instructions can be found [here](./plc/readme_plc.md).
 
-### Connect with ABB robot 4600 
+### Connect with ABB robot 4600
 
 Virtual Controller(RobotStudio Simulation)
 
@@ -59,8 +59,7 @@ python .\script\welcome_dcs.py
 
 ## Credits
 
-This package was created by [WeiTing Chen](https://github.com/WeiTing1991)
-at [USI-FMAA](https://github.com/USI-FMAA) and [ETHZurich DFab](https://dfab.ch/).
+This package was created by [WeiTing Chen](https://github.com/WeiTing1991) at [USI-FMAA](https://github.com/USI-FMAA) and [ETHZurich DFab](https://dfab.ch/).
 
 ## Acknowledgment
 compas_rrc is a wrapper for the ROS-Industrial abb driver. The original package can be found

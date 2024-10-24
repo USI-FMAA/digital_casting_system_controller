@@ -167,7 +167,5 @@ LineIDs.dbg.bak
 *.project.~u
 *.suo
 
-
-
-
-
+# preview
+.markdown-preview.html
