@@ -19,6 +19,8 @@ password: 1
 
 
 ### Usage
+TODO
+- how to make the loacal connection.
 
 #### Real controller
 
@@ -26,13 +28,14 @@ More details in [DCS_ConcreteController_v1]()
 
 ```bash
 
+
 ```
 
 #### Offline
 
-- use VM installed with TC/BSD
+- use `Virtual machine` installed with TC/BSD
 
-- Run local (without real plc)
+- Run local (without real PLC)
 
 ### Software Architecture
 
