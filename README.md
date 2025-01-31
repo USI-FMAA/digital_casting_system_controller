@@ -20,7 +20,7 @@ This repository is the submoudle of [Digital Casting System] for PLC controller 
 * `script`: the example script for controlling a physical and virtual robot via ROS wrapper package.
 
 > [!NOTE]
-> Please read the Development Installation.
+> Please the `script` folder is for testing the connection and set the robot to hone pos (each joint is 0 degrees)
 
 ## Usage
 ### DCS robot control panel
