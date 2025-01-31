@@ -87,6 +87,7 @@ celerybeat-schedule
 # virtualenv
 .venv
 venv/
+.evn/
 ENV/
 
 # Spyder project settings
@@ -112,12 +113,11 @@ temp/**
 
 
 # IDE
+### TwinCAT3 ###
 # gitignore template for TwinCAT3
 # website: https://www.beckhoff.com/twincat3/
-#
 # Recommended: VisualStudio.gitignore
 
-### TwinCAT3 ###
 # website: https://www.beckhoff.com/twincat3/
 
 # TwinCAT PLC
