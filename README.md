@@ -17,16 +17,16 @@ This repository is the submoudle of [Digital Casting System] for PLC controller 
 * `machines`: the dosing pump driver data.
 * `plc`: the TwinCAT project for the PLC controller.
 * `robot`: the ABB robot 4600 package for RobotStudio.
-* `script`: the example script for control physical and virtual robot via ROS wrapper package.
+* `script`: the example script for controlling a physical and virtual robot via ROS wrapper package.
 
-> [!NOTE]:
+> [!NOTE]
 
 ## Usage
 ### DCS robot control panel
 
 ![alt text](./doc/image/RobotPanel.png)
 
-Please fine more detail on [online doc]().
+Please find more detail on [online doc]().
 
 ## Development Installation
 
