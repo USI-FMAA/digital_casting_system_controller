@@ -78,7 +78,7 @@ python .\script\welcome_dcs.py
 ```
 
 ## Credits
-Author: [Wei-Ting Chen]
+Author: [Wei-Ting Chen] <br>
 This package was created by [Wei-Ting Chen] at [USI-FMAA](https://github.com/USI-FMAA) and [ETHZurich DFab](https://dfab.ch/).
 
 ## Acknowledgment
@@ -86,5 +86,5 @@ compas_rrc is a wrapper for the ROS-Industrial Abb driver. The original package 
 [here](https://github.com/compas-rrc)
 
 <!-- link -->
-[Wei-Ting Chen]:(https://github.com/WeiTing1991)
+[Wei-Ting Chen]: https://github.com/WeiTing1991
 [Digital Casting System]: https://github.com/USI-FMAA/digital_casting_system.git
