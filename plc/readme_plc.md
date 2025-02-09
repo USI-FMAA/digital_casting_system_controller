@@ -5,7 +5,6 @@
 ```
 user: Administrator
 password: 1
-
 ```
 <!--to do add picture-->
 
