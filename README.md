@@ -22,6 +22,9 @@ This repository is the submoudle of [Digital Casting System] for PLC controller 
 > [!NOTE]
 > Please the `script` folder is for testing the connection and setting the robot to hone pos (each joint is 0 degrees)
 
+> TODO:
+add class diagram of PLC controller.
+
 ## Usage
 ### DCS robot control panel
 
