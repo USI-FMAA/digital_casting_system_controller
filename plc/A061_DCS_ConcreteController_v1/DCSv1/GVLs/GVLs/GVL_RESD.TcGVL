@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
   <GVL Name="GVL_RESD" Id="{b609842c-d25b-424b-a488-5296437ef3c4}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 // ***********************************************************************************
@@ -90,7 +90,7 @@ f_Admixture_Pump_Flush_Flowrate: REAL;				// READ
 b_Admixture_Pump_Check_On: BOOL;					// CHECK MODE ON 
 f_Admixture_Pump_Check_Flowrate: REAL;				// READ 
 n_Admixture_Pump_Check_Duration: INT := 60; 		// [s]
-n_Admixture_Pump_Max_Flowrate :INT  := 637;		//calibrated 2402 WT
+n_Admixture_Pump_Max_Flowrate :INT  := 606;		//calibrated 2402 WT
 f_Admixture_Pump_Set_Flowrate: REAL;         		// 0 to 637 [ml/min] 
 f_Admixture_Pump_dosing_factor: REAL := 1;			//only for scaled
 
@@ -113,7 +113,7 @@ f_Sup_Admixture_Pump_Flush_Flowrate: REAL;
 b_Sup_Admixture_Pump_Check_On: BOOL;				// CHECK MODE ON 
 f_Sup_Admixture_Pump_Check_Flowrate: REAL;
 n_Sup_Admixture_Pump_Check_Duration: INT := 60; 	// [s];
-n_Sup_Admixture_Pump_Max_Flowrate:INT := 138; 		//[ml/min]
+n_Sup_Admixture_Pump_Max_Flowrate:INT := 595; 		//[ml/min]
 
 f_Sup_Admixture_Pump_Set_Flowrate: REAL;         	// 0 to 138[ml/min]
 f_Sup_Admixture_Pump_dosing_factor:REAL:=1; //only for scaled

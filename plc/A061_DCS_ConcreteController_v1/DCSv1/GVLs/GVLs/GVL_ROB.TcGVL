@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
   <GVL Name="GVL_ROB" Id="{4e6aaf52-5faa-4d3c-95d5-15091f54db1f}">
     <Declaration><![CDATA[ {attribute 'qualified_only'}
 // ***********************************************************************************
@@ -126,7 +126,7 @@ VAR_GLOBAL
 	ob_SP1_is_run:BOOL;
 	ob_SP1_is_ready : BOOL;
 	ob_SP1_no_error : BOOL;
-	on_SP1_max_flowrate:UINT := 148;	 // [ml/min] cailbrated 240710
+	on_SP1_max_flowrate:UINT:= 592;	 // [ml/min] cailbrated 250314 with pump500
 	
 END_VAR]]></Declaration>
   </GVL>

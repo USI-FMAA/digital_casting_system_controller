@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
   <POU Name="FB_SetOutputDataToIO" Id="{1d97a739-2a9b-4bf8-8fc4-6215cf7509a3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SetOutputDataToIO
 VAR_INPUT
@@ -262,7 +262,7 @@ END_IF
 GVL_IO.on_SP1_Speed:=F_ScalAnalogOut(
 	n_Input:= _n_temp_speed_SP1,
 	n_InMin:= 0, 
-	n_InMax:= INT_TO_UDINT(n_SP1_Max_Flowrate*n_SP1_Dosing_factor), 
+	n_InMax:= INT_TO_UDINT(n_SP1_Max_Flowrate)*n_SP1_Dosing_factor, 
 	n_OutMin:= 0, 
 	n_OutMax:= 32767);
 ]]></ST>

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.5">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.65">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000000000035}" TcBaseType="true" HideType="true">UINTARR2</Name>
@@ -1512,13 +1512,13 @@ External Setpoint Generation:
 			<Name GUID="{F7B9FC50-054E-4547-B468-83A9E72D8064}" Namespace="MC" TcBaseType="true" HideType="true">NCTOPLC_AXIS_REF_STATE3_FLAGS</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
-				<Name>TouchProbe1InputState</Name>
+				<Name>TouchProbe1InputState </Name>
 				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
 				<BitSize>1</BitSize>
 				<BitOffs>0</BitOffs>
 			</SubItem>
 			<SubItem>
-				<Name>TouchProbe2InputState</Name>
+				<Name>TouchProbe2InputState </Name>
 				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
 				<BitSize>1</BitSize>
 				<BitOffs>1</BitOffs>
@@ -2061,7 +2061,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -2070,7 +2070,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
 			<BitSize>6</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -2079,7 +2079,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
 			<BitSize>7</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -2088,7 +2088,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
 			<BitSize>5</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -2513,9 +2513,253 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{C29FE267-D081-4438-A6F8-D544C2CCE89E}" Name="DCSv1" PrjFilePath="DCSv1\DCSv1.plcproj" TmcFilePath="DCSv1\DCSv1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{4E942210-E71A-6702-B132-BAC6E1D09613}" TmcPath="DCSv1\DCSv1.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="DCSv1\DCSv1.tmc" TmcHash="{25637204-2472-0A46-07D6-B22E92E5C6B9}">
 					<Name>DCSv1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+					<Vars VarGrpType="1">
+						<Name>ComTask Inputs</Name>
+						<Var>
+							<Name>GVL.stIn_EL6001</Name>
+							<Comment><![CDATA[Hardware RS-232]]></Comment>
+							<Type GUID="{0146173C-D895-D219-E209-CC005AC77636}" Namespace="Tc2_SerialCom">EL6inData22B</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>ComTask Outputs</Name>
+						<Var>
+							<Name>GVL.stOut_EL6001</Name>
+							<Type GUID="{D6B0A42D-897A-4B90-95E8-3C741C3CE3EE}" Namespace="Tc2_SerialCom">EL6outData22B</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
+						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>GVL.Axis_Mixer1.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.Axis_Mixer2.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bSafetyIO</Name>
+							<Comment><![CDATA[Hardware Input]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bDosingPumpReady</Name>
+							<Comment><![CDATA[ bConcretePumpSafetyGridMounted	AT %I*	: BOOL;
+ bConcretePumpReady				AT %I*	: BOOL;
+ bConcretePumpFcError				AT %I*	: BOOL;]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bDosingPumpNoError</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bControlResetSafety</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bControlLaptop</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bControlManual</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nControlMixerPumpOn</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nControlMixerPumpOff</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nControlConcretPumpOn</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nControlConcretPumpOff</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nControlDosingPumpOn</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nControlDosingPumpOff</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.bInputSpare1</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nControlMixerPumpSpeed</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nControlDosingPumpSpeed</Name>
+							<Comment><![CDATA[ nControlPeristalticPumpSpeed	AT %I*	: INT; ]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nInputSpare1</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL.nInputSpare2</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_MID1_ActAbsCurrent</Name>
+							<Comment><![CDATA[ Hardware Inputs
+
+ Mixer  
+ TODO Please link to IO PLC]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_MID1_ActMotorTemperature</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_MID2_ActAbsCurrent</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_MID2_ActMotorTemperature</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_CC1_Safety_Ready</Name>
+							<Comment><![CDATA[ Safety ready for line mixer button ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_CC1_Button_Mode_Manual</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_CC1_Button_Mode_Laptop</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_CC1_Button_Reset</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_CP1_Drive_Error</Name>
+							<Comment><![CDATA[ Concrete Pump 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_CP1_Ready</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_CP1_Safety_Grid_Mounted</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_AP1_Button_On</Name>
+							<Comment><![CDATA[ Accelerator Pump 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_CP1_Tube_Pressure_Sensor</Name>
+							<Comment><![CDATA[??]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_CP1_Tube_Temperature_Sensor</Name>
+							<Comment><![CDATA[??]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_AP1_Button_Not_Off</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_AP1_Ready</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_AP1_No_Error</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_SP1_Button_On</Name>
+							<Comment><![CDATA[ 
+ Superplasticizer Pump 1 (WT 220915)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_AP1_Poti_Speed</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_SP1_Button_Not_Off</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_SP1_Ready</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_SP1_No_Error</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_MI1_Button_On</Name>
+							<Comment><![CDATA[in_SP1_Poti_Speed AT %I*	: INT; 
+
+ Mixer 1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ib_MI1_Button_Not_Off</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_MI1_Poti_Speed</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_Temp_CPump_fresh</Name>
+							<Comment><![CDATA[ Temperature sensor #WT 20230510]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_Temp_Funnel_Outlet</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_Temp_CPump</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_Pressure_Funnel</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.in_Pressure_Pump</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_PN.DO_From_ROB</Name>
+							<Comment><![CDATA[ Digital Output from robot (1 bit)]]></Comment>
+							<Type GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}">ARRAY [0..31] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>GVL_PN.GO_From_ROB</Name>
+							<Comment><![CDATA[ Group Output from robot (16 bit or 32 bit) ]]></Comment>
+							<Type GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}">ARRAY [32..255] OF BYTE</Type>
+						</Var>
+					</Vars>
 					<Vars VarGrpType="2" ContextId="1" AreaNo="17">
 						<Name>PlcTask Outputs</Name>
 						<Var>
@@ -2617,13 +2861,13 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.on_CP1_Speed</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.ob_AP1_Power_On</Name>
 							<Comment><![CDATA[ Admixture Pump 1]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.on_CP1_Speed</Name>
-							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ob_AP1_Start</Name>
@@ -2642,14 +2886,14 @@ External Setpoint Generation:
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.on_AP1_Speed</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.ob_SP1_Power_On</Name>
 							<Comment><![CDATA[ 
  Sup-Admixture Pump 1]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.on_AP1_Speed</Name>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.ob_SP1_Start</Name>
@@ -2680,250 +2924,6 @@ External Setpoint Generation:
 							<Name>GVL_PN.GI_To_ROB</Name>
 							<Comment><![CDATA[ Group Input to robot (16 bit or 32 bit)]]></Comment>
 							<Type GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}">ARRAY [32..255] OF BYTE</Type>
-						</Var>
-					</Vars>
-					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
-						<Name>PlcTask Inputs</Name>
-						<Var>
-							<Name>GVL.Axis_Mixer1.NcToPlc</Name>
-							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>GVL.Axis_Mixer2.NcToPlc</Name>
-							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bSafetyIO</Name>
-							<Comment><![CDATA[Hardware Input]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bDosingPumpReady</Name>
-							<Comment><![CDATA[ bConcretePumpSafetyGridMounted	AT %I*	: BOOL;
- bConcretePumpReady				AT %I*	: BOOL;
- bConcretePumpFcError				AT %I*	: BOOL;]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bDosingPumpNoError</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bControlResetSafety</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bControlLaptop</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bControlManual</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nControlMixerPumpOn</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nControlMixerPumpOff</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nControlConcretPumpOn</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nControlConcretPumpOff</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nControlDosingPumpOn</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nControlDosingPumpOff</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.bInputSpare1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nControlMixerPumpSpeed</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nControlDosingPumpSpeed</Name>
-							<Comment><![CDATA[ nControlPeristalticPumpSpeed	AT %I*	: INT; ]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nInputSpare1</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL.nInputSpare2</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_CC1_Safety_Ready</Name>
-							<Comment><![CDATA[ Safety ready for line mixer button ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_MID1_ActAbsCurrent</Name>
-							<Comment><![CDATA[ Hardware Inputs
-
- Mixer  
- TODO Please link to IO PLC]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_MID1_ActMotorTemperature</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_MID2_ActAbsCurrent</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_MID2_ActMotorTemperature</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_CC1_Button_Mode_Manual</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_CC1_Button_Mode_Laptop</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_CC1_Button_Reset</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_CP1_Drive_Error</Name>
-							<Comment><![CDATA[ Concrete Pump 1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_CP1_Ready</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_CP1_Safety_Grid_Mounted</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_CP1_Tube_Pressure_Sensor</Name>
-							<Comment><![CDATA[??]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_CP1_Tube_Temperature_Sensor</Name>
-							<Comment><![CDATA[??]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_AP1_Button_On</Name>
-							<Comment><![CDATA[ Accelerator Pump 1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_AP1_Button_Not_Off</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_AP1_Ready</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_AP1_No_Error</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_AP1_Poti_Speed</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_SP1_Button_On</Name>
-							<Comment><![CDATA[ 
- Superplasticizer Pump 1 (WT 220915)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_SP1_Button_Not_Off</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_SP1_Ready</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_SP1_No_Error</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_MI1_Button_On</Name>
-							<Comment><![CDATA[in_SP1_Poti_Speed AT %I*	: INT; 
-
- Mixer 1]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ib_MI1_Button_Not_Off</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_MI1_Poti_Speed</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_Temp_CPump_fresh</Name>
-							<Comment><![CDATA[ Temperature sensor #WT 20230510]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_Temp_Funnel_Outlet</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_Temp_CPump</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_Pressure_Funnel</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.in_Pressure_Pump</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_PN.DO_From_ROB</Name>
-							<Comment><![CDATA[ Digital Output from robot (1 bit)]]></Comment>
-							<Type GUID="{A6CC6AFE-FE37-C02D-2C0C-FB1479660FEB}">ARRAY [0..31] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>GVL_PN.GO_From_ROB</Name>
-							<Comment><![CDATA[ Group Output from robot (16 bit or 32 bit) ]]></Comment>
-							<Type GUID="{8B8CF547-15A0-DD6D-6591-2B20BF6B29F7}">ARRAY [32..255] OF BYTE</Type>
-						</Var>
-					</Vars>
-					<Vars VarGrpType="2" AreaNo="1">
-						<Name>ComTask Outputs</Name>
-						<Var>
-							<Name>GVL.stOut_EL6001</Name>
-							<Type GUID="{D6B0A42D-897A-4B90-95E8-3C741C3CE3EE}" Namespace="Tc2_SerialCom">EL6outData22B</Type>
-						</Var>
-					</Vars>
-					<Vars VarGrpType="1">
-						<Name>ComTask Inputs</Name>
-						<Var>
-							<Name>GVL.stIn_EL6001</Name>
-							<Comment><![CDATA[Hardware RS-232]]></Comment>
-							<Type GUID="{0146173C-D895-D219-E209-CC005AC77636}" Namespace="Tc2_SerialCom">EL6inData22B</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2021-01-27T08:08:38">
@@ -7301,12 +7301,7 @@ External Setpoint Generation:
 			</Device>
 			<Device Id="1" DevType="118" AmsPort="28673" AmsNetId="5.57.158.168.2.1" RemoteName="Device 1 (EL6631-0010)">
 				<Name>Device 1 (EL6631-0010)</Name>
-				<AddressInfo>
-					<Ecat>
-						<EtherCATDeviceId>15</EtherCATDeviceId>
-						<EtherCATDeviceName>TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 15 (EL6631-0010)</EtherCATDeviceName>
-					</Ecat>
-				</AddressInfo>
+				<DevData>000000000f00000000000000a08601005465726d2031352028454c363633312d3030313029000000000000000000000000000000000000000000000000000000000000000000010000000000000000000001057adaff040000000000000000000000000000000000000000000000000000000000000000000000000000000000</DevData>
 				<Image Id="7" AddrType="4" ImageType="3" SizeIn="260" SizeOut="260">
 					<Name>Image</Name>
 				</Image>
@@ -10568,7 +10563,6 @@ Submodule Info: DO 256 bytes
 		</OwnerA>
 		<OwnerA Name="TIPC^DCSv1^DCSv1 Instance">
 			<OwnerB Name="TIID^Device 1 (EL6631-0010)^robotbasicio">
-				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 0"/>
 				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[0]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 0"/>
 				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[1]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 1"/>
 				<Link VarA="PlcTask Inputs^GVL_PN.DO_From_ROB[2]" VarB="API^Term 3 (DO 256 bytes)^Subterm 5 (DO 256 bytes)^Inputs^Output 2"/>
